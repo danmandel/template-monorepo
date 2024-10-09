@@ -1,0 +1,14 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "eamodio.gitlens", // inline git blame
+    "esbenp.prettier-vscode",
+    "akamud.vscode-theme-onedark",
+    "richie5um2.vscode-sort-json",
+    "vscode-icons-team.vscode-icons",
+    "alefragnani.Bookmarks",
+    "YoavBls.pretty-ts-errors",
+    "usernamehw.errorlens", // Convenient display for errors and warnings
+    "csstools.postcss" // Prevent https://stackoverflow.com/questions/70597844/unknown-at-rule-tailwind-css-in-reactjs
+  ]
+}
