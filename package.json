@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "sync": "bun run bin/sync.ts"
   },
   "dependencies": {
     "react": "^18",
