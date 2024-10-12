@@ -10,10 +10,10 @@ interface GoogleButtonProps {
 export const GoogleButton: FC<GoogleButtonProps> = ({ onClick }) => {
   return (
     <button
-      className="flex w-full items-center justify-center rounded-md bg-white px-4 py-2 text-black shadow-md"
+      className='flex w-full items-center justify-center rounded-md bg-white px-4 py-2 text-black shadow-md'
       onClick={onClick}
     >
-      <FcGoogle className="mr-2" />
+      <FcGoogle className='mr-2' />
       Google
     </button>
   );

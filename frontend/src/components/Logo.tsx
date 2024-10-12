@@ -17,5 +17,5 @@ export const ThemedImage = () => {
       break;
   }
 
-  return <Image src={src} width={400} height={400} alt="logo" />;
+  return <Image src={src} width={400} height={400} alt='logo' />;
 };
