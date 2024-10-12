@@ -1,0 +1,12 @@
+services:
+  frontend:
+    environment:
+      - NODE_ENV=production
+    command: ["bun", "run", "start"]
+    restart: always
+
+  backend:
+    environment:
+      - NODE_ENV=production
+    command: ["bun", "run", "start"]
+    restart: always
