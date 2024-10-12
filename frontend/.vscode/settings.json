@@ -14,7 +14,6 @@
   "eslint.validate": [
     "javascript",
     "typescript",
-    "javascriptreact",
     "typescriptreact"
   ],
   "files.autoSave": "afterDelay",
@@ -25,5 +24,6 @@
   "window.title": "${rootName}${separator}${activeEditorMedium}",
   "window.zoomLevel": 0,
   "workbench.colorTheme": "Atom One Dark",
-  "workbench.editor.labelFormat": "medium"
+  "workbench.editor.labelFormat": "medium",
+   "git.openRepositoryInParentFolders": "always"
 }
