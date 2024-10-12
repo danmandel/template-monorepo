@@ -11,7 +11,7 @@ This is an opinionated & minimalistic monorepo template for quickly starting new
     - highly modular, scales well with application complexity.
 
 3. Next.js (App Router) frontend:
-    - allows for rapid development.
+    - rapid development with file-based routing.
     - clean, reusable components.
 
 4. GraphQL & Apollo Client:
@@ -30,5 +30,6 @@ This is an opinionated & minimalistic monorepo template for quickly starting new
 ## Development
 
 From the root directory: `cursor frontend && cursor backend`
+
 From the backend: `bun infra`
 

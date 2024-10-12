@@ -1,7 +1,7 @@
 import { execSync } from "child_process";
 
-const TEMPLATE_REPO_URL = "https://github.com/danmandel/template-next.git";
-const TEMPLATE_REMOTE_NAME = "template-next";
+const TEMPLATE_REPO_URL = "https://github.com/danmandel/template-monorepo.git";
+const TEMPLATE_REMOTE_NAME = "template-monorepo";
 
 try {
   // Get the URL of the 'origin' remote (or another main remote of the repo)
