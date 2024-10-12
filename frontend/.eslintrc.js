@@ -2,13 +2,22 @@
 const fs = require('fs');
 
 module.exports = {
-  extends: ['next', 'prettier', 'react-app', 'react-app/jest', 'plugin:tailwindcss/recommended'],
+  extends: [
+    'next',
+    'prettier',
+    'react-app',
+    'react-app/jest',
+    'plugin:tailwindcss/recommended',
+    'plugin:prettier/recommended',
+  ],
   parserOptions: {
     babelOptions: {
       presets: [require.resolve('next/babel')],
     },
   },
+  plugins: ['prettier'],
   rules: {
+    'prettier/prettier': 'error',
     'tailwindcss/no-custom-classname': 'off',
     'testing-library/prefer-screen-queries': 'off',
     '@next/next/no-html-link-for-pages': 'off',
