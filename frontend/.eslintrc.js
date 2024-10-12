@@ -78,7 +78,7 @@ module.exports = {
     },
     // App router
     {
-      files: ['src/app/**/{page,layout,not-found}.tsx'],
+      files: ['src/app/**/{page,layout,not-found}.tsx', 'next.config.mjs'],
       rules: {
         'import/no-default-export': 'off',
       },

@@ -28,4 +28,21 @@ USER bun
 COPY --from=prod-deps /usr/src/app/node_modules ./node_modules
 COPY --from=build /usr/src/app ./
 EXPOSE 4000
-CMD ["bun", "run", "start"]
+
+# This is a default command. Will be overridden by docker-compose.yml
+CMD ["bun", "run", "start"] 
+
+
+
+# TODO:
+# Flush all existing rules (optional, to start fresh)
+# sudo iptables -F OUTPUT
+
+# # Allow outgoing traffic on the approved port (e.g., 443 for HTTPS)
+# sudo iptables -A OUTPUT -p tcp --dport 443 -j ACCEPT
+
+# # Allow outgoing traffic to localhost (loopback)
+# sudo iptables -A OUTPUT -o lo -j ACCEPT
+
+# # Block all other outgoing traffic
+# sudo iptables -A OUTPUT -j DROP

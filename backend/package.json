@@ -5,7 +5,10 @@
   "scripts": {
     "lint": "eslint --ext .tsx,.ts src/",
     "dev": "bun run --watch index.ts",
-    "start": "docker compose up -d"
+    "start": "bun run index.ts",
+    "infra": "bun run docker:dev",
+    "docker:dev": "docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build",
+    "docker:prod": "docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build"
   },
   "devDependencies": {
     "@types/bun": "latest"

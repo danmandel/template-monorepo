@@ -1,35 +1,63 @@
-## https://bun.sh/guides/ecosystem/docker
+## https://bun.sh/guides/ecosystem/docker 
 
 # Base image
 FROM oven/bun:1 AS base
 WORKDIR /usr/src/app
 
-# Stage 1: Install development dependencies and cache them
+# Stage 1: Install dependencies
 FROM base AS deps
 COPY package.json bun.lockb ./
 RUN bun install --frozen-lockfile
 
-# Stage 2: Build the application
-FROM base AS build
+# Install npm compatibility layer. TODO: try commenting this out and doing `bun add @next/swc-linux-arm64-gnu`
+RUN bun add npm
+
+# Next.js collects completely anonymous telemetry data about general usage: https://nextjs.org/telemetry
+ENV NEXT_TELEMETRY_DISABLED 1
+
+# Stage 2: Development stage
+FROM base AS dev
+WORKDIR /usr/src/app
 COPY --from=deps /usr/src/app/node_modules ./node_modules
 COPY . .
-RUN bun run build
 
-# Stage 3: Install production dependencies
+# Stage 3: Build the application
+FROM base AS build
+WORKDIR /usr/src/app
+COPY --from=deps /usr/src/app/node_modules ./node_modules
+COPY . .
+
+# Enable output file tracing to reduce image size: https://nextjs.org/docs/advanced-features/output-file-tracing
+ENV NEXT_OUTPUT_TRACE true
+RUN bun next build
+
+# Stage 4: Prepare production dependencies
 FROM base AS prod-deps
+WORKDIR /usr/src/app
 COPY package.json bun.lockb ./
 RUN bun install --frozen-lockfile --production
 
-# Stage 4: Final image
+# Stage 5: Final image for production
 FROM base AS final
-ENV NODE_ENV=production
-USER bun
+WORKDIR /usr/src/app
+
+# Create a non-root user and group
+RUN addgroup --system --gid 1001 nextjs
+RUN adduser --system --uid 1001 nextjs
+
+# Copy necessary files and set permissions
 COPY --from=prod-deps /usr/src/app/node_modules ./node_modules
-COPY --from=build /usr/src/app/.next ./.next
+COPY --from=build /usr/src/app/.next/standalone ./
+COPY --from=build /usr/src/app/.next/static ./.next/static
 COPY --from=build /usr/src/app/public ./public
-COPY next.config.mjs .
+
+# Change ownership to the non-root user
+RUN chown -R nextjs:nextjs /usr/src/app
+
+USER nextjs
+
 EXPOSE 3000
-CMD ["bun", "run", "start"]
+CMD ["node", "server.js"]
 
 # TODO:
 # Flush all existing rules (optional, to start fresh)
