@@ -1,0 +1,16 @@
+{
+  "name": "template-backend",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "lint": "eslint --ext .tsx,.ts src/",
+    "dev": "bun run --watch index.ts",
+    "start": "docker compose up -d"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
