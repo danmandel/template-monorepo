@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "lint:next": "next lint",
+    "lint:fix": "eslint --ext .tsx,.ts src/ --fix",
+    "build": "bun run lint && bun run next build",
     "start": "next start",
-    "lint": "next lint",
     "sync": "bun run bin/sync.ts"
   },
   "dependencies": {

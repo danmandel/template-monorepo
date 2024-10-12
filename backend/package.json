@@ -3,6 +3,7 @@
   "module": "index.ts",
   "type": "module",
   "scripts": {
+    "lint": "eslint --ext .tsx,.ts src/",
     "dev": "bun run --watch index.ts",
     "start": "docker compose up -d"
   },
