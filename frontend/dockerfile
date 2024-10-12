@@ -1,0 +1,45 @@
+## https://bun.sh/guides/ecosystem/docker
+
+# Base image
+FROM oven/bun:1 AS base
+WORKDIR /usr/src/app
+
+# Stage 1: Install development dependencies and cache them
+FROM base AS deps
+COPY package.json bun.lockb ./
+RUN bun install --frozen-lockfile
+
+# Stage 2: Build the application
+FROM base AS build
+COPY --from=deps /usr/src/app/node_modules ./node_modules
+COPY . .
+RUN bun run build
+
+# Stage 3: Install production dependencies
+FROM base AS prod-deps
+COPY package.json bun.lockb ./
+RUN bun install --frozen-lockfile --production
+
+# Stage 4: Final image
+FROM base AS final
+ENV NODE_ENV=production
+USER bun
+COPY --from=prod-deps /usr/src/app/node_modules ./node_modules
+COPY --from=build /usr/src/app/.next ./.next
+COPY --from=build /usr/src/app/public ./public
+COPY next.config.mjs .
+EXPOSE 3000
+CMD ["bun", "run", "start"]
+
+# TODO:
+# Flush all existing rules (optional, to start fresh)
+# sudo iptables -F OUTPUT
+
+# # Allow outgoing traffic on the approved port (e.g., 443 for HTTPS)
+# sudo iptables -A OUTPUT -p tcp --dport 443 -j ACCEPT
+
+# # Allow outgoing traffic to localhost (loopback)
+# sudo iptables -A OUTPUT -o lo -j ACCEPT
+
+# # Block all other outgoing traffic
+# sudo iptables -A OUTPUT -j DROP

@@ -1,0 +1,21 @@
+
+services:
+  frontend:
+    build:
+      context: ../frontend
+      dockerfile: dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    environment:
+      - NODE_ENV=production
+
+  backend:
+    build:
+      context: .
+      dockerfile: dockerfile
+    ports:
+      - "4000:4000"
+    environment:
+      - NODE_ENV=production
