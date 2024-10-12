@@ -4,9 +4,13 @@ services:
       - NODE_ENV=production
     command: ["bun", "run", "start"]
     restart: always
+    # deploy:
+    #   replicas: 3
 
   backend:
     environment:
       - NODE_ENV=production
     command: ["bun", "run", "start"]
     restart: always
+    # deploy:
+    #   replicas: 3
