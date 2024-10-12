@@ -7,11 +7,12 @@
     "dev": "bun run --watch index.ts",
     "start": "bun run index.ts",
     "infra": "bun run docker:dev",
-    "docker:dev": "docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build",
+    "docker:dev": "docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build && open http://localhost:3000",
     "docker:prod": "docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build"
   },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "open": "^10.1.0"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
