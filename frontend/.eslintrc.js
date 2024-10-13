@@ -15,7 +15,7 @@ module.exports = {
       presets: [require.resolve('next/babel')],
     },
   },
-  plugins: ['prettier'],
+  plugins: ['prettier', 'import'],
   rules: {
     'prettier/prettier': 'error',
     'tailwindcss/no-custom-classname': 'off',
@@ -78,7 +78,7 @@ module.exports = {
     },
     // App router
     {
-      files: ['src/app/**/{page,layout,not-found}.tsx', 'next.config.mjs'],
+      files: ['src/app/**/{page,layout,not-found}.tsx', '*.config.mjs'],
       rules: {
         'import/no-default-export': 'off',
       },
