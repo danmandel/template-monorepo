@@ -1,5 +1,5 @@
-var fs = require('fs');
-// import fs from 'fs';
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+// var fs = require('fs');
 
 module.exports = {
   parserOptions: {
@@ -14,6 +14,7 @@ module.exports = {
 
   plugins: ['prettier', 'import'],
   rules: {
+    // 'arrow-parens': ['error', 'as-needed'],
     'prettier/prettier': 'error',
     '@typescript-eslint/no-unused-vars': [
       'warn',

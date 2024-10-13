@@ -17,6 +17,7 @@ module.exports = {
   },
   plugins: ['prettier', 'import'],
   rules: {
+    'arrow-parens': ['error', 'as-needed'],
     'prettier/prettier': 'error',
     'tailwindcss/no-custom-classname': 'off',
     'testing-library/prefer-screen-queries': 'off',
@@ -41,7 +42,7 @@ module.exports = {
       {
         groups: ['external', 'builtin', 'internal', 'sibling', 'parent', 'index'],
         pathGroups: [
-          ...getDirectoriesToSort().map((singleDir) => ({
+          ...getDirectoriesToSort().map(singleDir => ({
             pattern: `${singleDir}/**`,
             group: 'internal',
           })),
