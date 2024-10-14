@@ -5,7 +5,7 @@ This is an opinionated & minimalistic monorepo template for quickly starting new
 1) Frontend/backend folder structure:
     - less nesting and configuration than other monorepo approaches.
     - easy to swap out either frontend or backend for other tech.
-    - supports frontend/backend-specific vscode settings, linting, formatting.
+    - supports frontend/backend-specific vscode settings, linting, formatting, searching.
 
 2. Domain Driven Design (DDD) oriented backend:
     - highly modular, scales well with application complexity.
@@ -20,7 +20,7 @@ This is an opinionated & minimalistic monorepo template for quickly starting new
 
 5. Docker:
     - consistent dev environment
-    - easy deployment anywhere
+    - easy deployment anywhere.
     - simple to scale up and down.
 
 6. ESLint, Prettier:
@@ -32,4 +32,3 @@ This is an opinionated & minimalistic monorepo template for quickly starting new
 From the root directory: `cursor frontend && cursor backend`
 
 From the backend: `bun infra`
-

@@ -3,19 +3,40 @@
   "module": "index.ts",
   "type": "module",
   "scripts": {
-    "lint": "eslint --ext .tsx,.ts src/",
+    "lint": "eslint --ext .ts src/",
+    "lint:docker:dev": "docker compose -f docker-compose.yml -f docker-compose.dev.yml config",
+    "lint:docker:prod": "docker compose -f docker-compose.yml -f docker-compose.prod.yml config",
     "dev": "bun run --watch index.ts",
     "start": "bun run index.ts",
     "infra": "bun run docker:dev",
     "docker:dev": "docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build && open http://localhost:3000",
     "docker:prod": "docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build",
-    "sync": "bun run bin/sync.ts"
+    "sync": "bun run bin/sync.ts",
+    "migration:create": "bun bin/createMigration.ts",
+    "migration:generate": "bun bin/generateMigration.ts",
+    "migration:run": "bun bin/runMigration.ts",
+    "migration:revert": "bun bin/revertMigration.ts"
+  },
+  "dependencies": {
+    "@apollo/server": "^4.11.0",
+    "graphql": "^16.9.0",
+    "graphql-tag": "^2.12.6",
+    "pg": "^8.4.0",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "0.3.20"
   },
   "devDependencies": {
     "@types/bun": "latest",
-    "open": "^10.1.0"
+    "@typescript-eslint/eslint-plugin": "^8.8.1",
+    "@typescript-eslint/parser": "^8.8.1",
+    "eslint": "^8",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "open": "^10.1.0",
+    "prettier": "^3.3.3"
   },
   "peerDependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "^5.6.3"
   }
 }

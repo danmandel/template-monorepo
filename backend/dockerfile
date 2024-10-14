@@ -23,7 +23,6 @@ RUN bun install --frozen-lockfile --production
 
 # Stage 4: Final image
 FROM base AS final
-ENV NODE_ENV=production
 USER bun
 COPY --from=prod-deps /usr/src/app/node_modules ./node_modules
 COPY --from=build /usr/src/app ./

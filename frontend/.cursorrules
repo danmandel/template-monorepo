@@ -11,6 +11,7 @@ const cursorRules = {
   rules: {
     general: [
       "Minimize 'use client' usage: Prefer server components and Next.js SSR features. Use 'use client' only for Web API access in small components. Avoid using 'use client' for data fetching or state management.",
+      'Please ask clarifying questions when you are unsure about the requirements.',
     ],
     codeStyle: [
       'Write pure, functional TypeScript code. Avoid classes unless absolutely necessary',

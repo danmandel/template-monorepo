@@ -15,8 +15,9 @@ module.exports = {
       presets: [require.resolve('next/babel')],
     },
   },
-  plugins: ['prettier'],
+  plugins: ['prettier', 'import'],
   rules: {
+    // 'arrow-parens': ['error', 'as-needed'],
     'prettier/prettier': 'error',
     'tailwindcss/no-custom-classname': 'off',
     'testing-library/prefer-screen-queries': 'off',
@@ -36,6 +37,7 @@ module.exports = {
       },
     ],
     'tailwindcss/classnames-order': 'off',
+    // 'import/order': ['error', { groups: [['builtin', 'external', 'internal']] }],
     'import/order': [
       1,
       {
@@ -78,7 +80,7 @@ module.exports = {
     },
     // App router
     {
-      files: ['src/app/**/{page,layout,not-found}.tsx', 'next.config.mjs'],
+      files: ['src/app/**/{page,layout,not-found}.tsx', '*.config.mjs'],
       rules: {
         'import/no-default-export': 'off',
       },

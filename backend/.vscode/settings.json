@@ -1,30 +1,27 @@
 {
-    "diffEditor.ignoreTrimWhitespace": false,
-    "diffEditor.renderSideBySide": true,
-    "editor.bracketPairColorization.enabled": true,
-    "editor.codeActionsOnSave": {
-      "source.addMissingImports.ts": "always",
-      "source.fixAll.eslint": "always"
-    },
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnPaste": true, // optional
-    "editor.formatOnSave": true, // optional
-    "editor.formatOnSaveMode": "file", // required to format on save
-    "editor.formatOnType": false, // required
-    "eslint.validate": [
-      "javascript",
-      "typescript",
-      "typescriptreact"
-    ],
-    "files.autoSave": "afterDelay",
-    "search.exclude": {
-      "package-lock.json": true
-    },
-    "typescript.enablePromptUseWorkspaceTsdk": true,
-    "window.title": "${rootName}${separator}${activeEditorMedium}",
-    "window.zoomLevel": 0,
-    "workbench.colorTheme": "Atom One Dark",
-    "workbench.editor.labelFormat": "medium",
-     "git.openRepositoryInParentFolders": "always"
-  }
-  
+  "diffEditor.ignoreTrimWhitespace": false,
+  "diffEditor.renderSideBySide": true,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.codeActionsOnSave": {
+    "source.addMissingImports.ts": "always",
+    "source.fixAll.eslint": "always"
+    // "source.sortImports": "always"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnPaste": true, // optional
+  "editor.formatOnSave": true, // optional
+  "editor.formatOnSaveMode": "file", // required to format on save
+  "editor.formatOnType": false, // required
+  "eslint.validate": ["javascript", "typescript", "typescriptreact"],
+  "files.autoSave": "afterDelay",
+  "search.exclude": {
+    "package-lock.json": true
+  },
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "window.title": "${rootName}${separator}${activeEditorMedium}",
+  "window.zoomLevel": 0,
+  "workbench.colorTheme": "Atom One Dark",
+  "workbench.editor.labelFormat": "medium",
+  "git.openRepositoryInParentFolders": "always",
+  "typescript.tsdk": "node_modules/typescript/lib"
+}
