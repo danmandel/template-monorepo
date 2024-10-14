@@ -8,8 +8,14 @@
     "start": "bun run index.ts",
     "infra": "bun run docker:dev",
     "docker:dev": "docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build && open http://localhost:3000",
+    "lint:docker:dev": "docker compose -f docker-compose.yml -f docker-compose.dev.yml config",
     "docker:prod": "docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build",
-    "sync": "bun run bin/sync.ts"
+    "lint:docker:prod": "docker compose -f docker-compose.yml -f docker-compose.prod.yml config",
+    "sync": "bun run bin/sync.ts",
+    "migration:create": "bun bin/createMigration.ts",
+    "migration:generate": "bun bin/generateMigration.ts",
+    "migration:run": "bun bin/runMigration.ts",
+    "migration:revert": "bun bin/revertMigration.ts"
   },
   "devDependencies": {
     "@types/bun": "latest",
@@ -22,7 +28,8 @@
     "eslint-plugin-prettier": "^5.2.1",
     "open": "^10.1.0",
     "postcss": "^8",
-    "prettier": "^3.3.3"
+    "prettier": "^3.3.3",
+    "ts-node": "^10.9.2"
   },
   "peerDependencies": {
     "typescript": "^5.6.3"
@@ -32,6 +39,8 @@
     "graphql": "^16.9.0",
     "graphql-tag": "^2.12.6",
     "graphql-yoga": "^5.7.0",
-    "typeorm": "^0.3.20"
+    "pg": "^8.4.0",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "0.3.20"
   }
 }
