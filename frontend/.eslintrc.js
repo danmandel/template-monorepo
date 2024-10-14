@@ -17,7 +17,7 @@ module.exports = {
   },
   plugins: ['prettier', 'import'],
   rules: {
-    'arrow-parens': ['error', 'as-needed'],
+    // 'arrow-parens': ['error', 'as-needed'],
     'prettier/prettier': 'error',
     'tailwindcss/no-custom-classname': 'off',
     'testing-library/prefer-screen-queries': 'off',
@@ -37,6 +37,7 @@ module.exports = {
       },
     ],
     'tailwindcss/classnames-order': 'off',
+    // 'import/order': ['error', { groups: [['builtin', 'external', 'internal']] }],
     'import/order': [
       1,
       {

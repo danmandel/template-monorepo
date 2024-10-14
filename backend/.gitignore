@@ -1,6 +1,7 @@
 .idea/
-.vscode/
 node_modules/
 build/
 tmp/
 todo.md
+.env.dev
+.env.prod
