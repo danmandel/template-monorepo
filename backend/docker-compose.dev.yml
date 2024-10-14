@@ -12,18 +12,11 @@ services:
       - /usr/src/app/node_modules # Avoid overwriting node_modules
 
   backend:
-    environment:
-      NODE_ENV: development
-      POSTGRES_USER: dev
-      POSTGRES_PASSWORD: devpass
-      POSTGRES_DB: dev_db
+    env_file: .env.dev
     command: ['bun', 'run', 'dev']
     volumes:
       - .:/usr/src/app # Mount the backend directory
       - /usr/src/app/node_modules # Avoid overwriting node_modules
 
   postgres:
-    environment:
-      POSTGRES_USER: dev
-      POSTGRES_PASSWORD: devpass
-      POSTGRES_DB: dev_db
+    env_file: .env.dev

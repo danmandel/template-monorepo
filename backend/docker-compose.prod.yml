@@ -1,25 +1,18 @@
 services:
   frontend:
     environment:
-      NODE_ENV: production
+      NODE_ENV: production # Don't use env.prod to avoid exposing other env variables to frontend service.
     command: ['bun', 'run', 'start']
     restart: always
     # deploy:
     #   replicas: 3
 
   backend:
-    environment:
-      NODE_ENV: production
-      POSTGRES_USER: prod
-      POSTGRES_PASSWORD: prodpass
-      POSTGRES_DB: prod_db
+    env_file: .env.prod
     command: ['bun', 'run', 'start']
     restart: always
     # deploy:
     #   replicas: 3
 
   postgres:
-    environment:
-      POSTGRES_USER: prod # TODO: Change this
-      POSTGRES_PASSWORD: prodpass
-      POSTGRES_DB: prod_db
+    env_file: .env.prod
