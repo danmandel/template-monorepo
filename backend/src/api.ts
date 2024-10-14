@@ -5,19 +5,16 @@ import type { IResolvers } from '@graphql-tools/utils';
 import * as glob from 'glob';
 import type { DocumentNode } from 'graphql';
 
-const allTypeDefs: DocumentNode[] = [];
-const allResolvers: IResolvers[] = [];
+const typeDefs: DocumentNode[] = [];
+const resolvers: IResolvers[] = [];
 
 glob.sync(__dirname + '/datastructures/*/graphql.ts').forEach((file) => {
   const f = require(file);
-  if (f.typeDef) allTypeDefs.push(f.typeDef);
-  if (f.resolvers) allResolvers.push(f.resolvers);
+  if (f.typeDef) typeDefs.push(f.typeDef);
+  if (f.resolvers) resolvers.push(f.resolvers);
 });
 
-const typeDefs = mergeTypeDefs(allTypeDefs);
-const resolvers = mergeResolvers(allResolvers);
-
 export const schema = makeExecutableSchema({
-  typeDefs,
-  resolvers,
+  typeDefs: mergeTypeDefs(typeDefs),
+  resolvers: mergeResolvers(resolvers),
 });

@@ -42,7 +42,7 @@ module.exports = {
       {
         groups: ['external', 'builtin', 'internal', 'sibling', 'parent', 'index'],
         pathGroups: [
-          ...getDirectoriesToSort().map(singleDir => ({
+          ...getDirectoriesToSort().map((singleDir) => ({
             pattern: `${singleDir}/**`,
             group: 'internal',
           })),

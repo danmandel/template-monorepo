@@ -11,6 +11,7 @@ const cursorRules = {
   rules: {
     general: [
       'Please ask clarifying questions when you are unsure about the requirements.',
+      'Prefer imports over require',
       'Suggest commands using bun when possible',
     ],
     codeStyle: [

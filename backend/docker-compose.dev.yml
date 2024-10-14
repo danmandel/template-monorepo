@@ -6,7 +6,7 @@ services:
       - NODE_ENV=development
       - CHOKIDAR_USEPOLLING=true
       # - WATCHPACK_POLLING=true
-    command: ["bun", "run", "dev"]
+    command: ['bun', 'run', 'dev']
     volumes:
       - ../frontend:/usr/src/app # Mount the frontend directory
       - /usr/src/app/node_modules # Avoid overwriting node_modules
@@ -14,8 +14,13 @@ services:
   backend:
     environment:
       - NODE_ENV=development
-    command: ["bun", "run", "dev"]
+    command: ['bun', 'run', 'dev']
     volumes:
       - .:/usr/src/app # Mount the backend directory
       - /usr/src/app/node_modules # Avoid overwriting node_modules
 
+  postgres:
+    environment:
+      POSTGRES_USER: 'dev'
+      POSTGRES_PASSWORD: 'dev'
+      POSTGRES_DB: 'dev'

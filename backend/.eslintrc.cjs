@@ -63,6 +63,16 @@ module.exports = {
     ],
     'import/no-default-export': 'error',
   },
+  overrides: [
+    {
+      // Model.ts files must have default exports
+      files: ['src/datastructures/**/model.ts', 'src/algorithms/initializeDb.ts'],
+      rules: {
+        'import/no-default-export': 'off',
+        'import/prefer-default-export': 'error',
+      },
+    },
+  ],
 };
 
 // function getDirectoriesToSort() {
