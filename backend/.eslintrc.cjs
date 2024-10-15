@@ -1,26 +1,28 @@
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-// var fs = require('fs');
-
 module.exports = {
   parserOptions: {
-    ecmaVersion: '2020',
-    sourceType: 'module',
+    ecmaVersion: '2020', // Allows modern ECMAScript features
+    sourceType: 'module', // Allows the use of imports
   },
   env: {
-    node: true,
+    node: true, // Defines Node.js global variables and scope
   },
   parser: '@typescript-eslint/parser',
-  extends: ['prettier', 'plugin:@typescript-eslint/recommended', 'plugin:prettier/recommended'],
-
-  plugins: ['prettier', 'import'],
+  extends: [
+    'prettier', // Disables conflicting Prettier rules
+    'plugin:@typescript-eslint/recommended', // Recommended rules from @typescript-eslint
+    'plugin:prettier/recommended',
+  ],
+  plugins: [
+    'prettier', // Enables Prettier plugin for ESLint
+    'import', // Enables ESLint's import plugin for sorting and managing imports
+  ],
   rules: {
-    // 'arrow-parens': ['error', 'as-needed'],
-    'prettier/prettier': 'error',
+    'prettier/prettier': 'error', // Ensures prettier errors are displayed
     '@typescript-eslint/no-unused-vars': [
       'warn',
       {
-        argsIgnorePattern: '^_',
-        varsIgnorePattern: '^_',
+        argsIgnorePattern: '^_', // Ignores unused arguments prefixed with an underscore
+        varsIgnorePattern: '^_', // Ignores unused variables prefixed with an underscore
       },
     ],
     'sort-imports': [
@@ -30,8 +32,12 @@ module.exports = {
         ignoreDeclarationSort: true,
       },
     ],
-    'tailwindcss/classnames-order': 'off',
-    'import/order': ['error', { groups: [['builtin', 'external', 'internal']] }],
+    'import/order': [
+      'error',
+      {
+        groups: [['builtin', 'external', 'internal']],
+      },
+    ],
     'import/no-default-export': 'error',
   },
   overrides: [

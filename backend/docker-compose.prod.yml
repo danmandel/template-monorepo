@@ -8,11 +8,11 @@ services:
     #   replicas: 3
 
   backend:
-    env_file: .env.prod
+    env_file: .env.production
     command: ['bun', 'run', 'start']
     restart: always
     # deploy:
     #   replicas: 3
 
   postgres:
-    env_file: .env.prod
+    env_file: .env.production

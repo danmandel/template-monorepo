@@ -1,14 +1,24 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const fs = require('fs');
 
+function getDirectoriesToSort() {
+  const ignoredSortingDirectories = ['.git', '.next', '.vscode', 'node_modules'];
+  return getDirectories(process.cwd()).filter((f) => !ignoredSortingDirectories.includes(f));
+}
+
+function getDirectories(path) {
+  return fs.readdirSync(path).filter(function (file) {
+    return fs.statSync(path + '/' + file).isDirectory();
+  });
+}
+
 module.exports = {
+  parser: '@typescript-eslint/parser',
   extends: [
     'next',
-    'prettier',
-    'react-app',
-    'react-app/jest',
-    'plugin:tailwindcss/recommended',
+    'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
+    'plugin:tailwindcss/recommended',
   ],
   parserOptions: {
     babelOptions: {
@@ -17,10 +27,8 @@ module.exports = {
   },
   plugins: ['prettier', 'import'],
   rules: {
-    // 'arrow-parens': ['error', 'as-needed'],
     'prettier/prettier': 'error',
     'tailwindcss/no-custom-classname': 'off',
-    'testing-library/prefer-screen-queries': 'off',
     '@next/next/no-html-link-for-pages': 'off',
     '@typescript-eslint/no-unused-vars': [
       'warn',
@@ -37,9 +45,8 @@ module.exports = {
       },
     ],
     'tailwindcss/classnames-order': 'off',
-    // 'import/order': ['error', { groups: [['builtin', 'external', 'internal']] }],
     'import/order': [
-      1,
+      'warn',
       {
         groups: ['external', 'builtin', 'internal', 'sibling', 'parent', 'index'],
         pathGroups: [
@@ -71,30 +78,12 @@ module.exports = {
     'import/no-default-export': 'error',
   },
   overrides: [
-    // Pages router
+    // Supports pages and app router
     {
-      files: ['src/pages/**/*'],
-      rules: {
-        'import/no-default-export': 'off',
-      },
-    },
-    // App router
-    {
-      files: ['src/app/**/{page,layout,not-found}.tsx', '*.config.mjs'],
+      files: ['src/pages/**/*', 'src/app/**/{page,layout,not-found}.tsx', '*.config.mjs'],
       rules: {
         'import/no-default-export': 'off',
       },
     },
   ],
 };
-
-function getDirectoriesToSort() {
-  const ignoredSortingDirectories = ['.git', '.next', '.vscode', 'node_modules'];
-  return getDirectories(process.cwd()).filter((f) => !ignoredSortingDirectories.includes(f));
-}
-
-function getDirectories(path) {
-  return fs.readdirSync(path).filter(function (file) {
-    return fs.statSync(path + '/' + file).isDirectory();
-  });
-}
