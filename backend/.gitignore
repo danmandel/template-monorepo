@@ -3,5 +3,5 @@ node_modules/
 build/
 tmp/
 todo.md
-.env.dev
-.env.prod
+.env.development
+.env.production
