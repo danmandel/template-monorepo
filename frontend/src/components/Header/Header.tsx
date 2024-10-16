@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { PiGearSixDuotone } from 'react-icons/pi';
-import { project } from '@/app/project';
+import { project } from '@/project';
 import { ThemeToggle } from '../ThemeToggle';
 
 export const Header = () => {

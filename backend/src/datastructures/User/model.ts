@@ -6,5 +6,17 @@ export default class User {
   id: string;
 
   @Column()
+  firebaseUid: string;
+
+  @Column()
   email: string;
+
+  @Column()
+  displayName: string;
+
+  @Column()
+  createdAt: Date;
+
+  @Column()
+  updatedAt: Date;
 }
