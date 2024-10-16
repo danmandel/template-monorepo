@@ -1,4 +1,4 @@
-import { project } from '@/app/project';
+import { project } from '@/project';
 
 export default function Home() {
   return (
