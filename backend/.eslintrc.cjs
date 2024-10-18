@@ -39,6 +39,7 @@ module.exports = {
       },
     ],
     'import/no-default-export': 'error',
+    '@typescript-eslint/no-explicit-any': 'off',
   },
   overrides: [
     {
