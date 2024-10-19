@@ -1,3 +1,5 @@
+/* eslint-disable */
+import { gql } from '@apollo/client';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -19,4 +21,31 @@ export type Event = {
   aggregateId: Scalars['ID']['output'];
   id: Scalars['ID']['output'];
   type: Scalars['String']['output'];
+};
+
+export type Mutation = {
+  __typename?: 'Mutation';
+  login?: Maybe<User>;
+  register?: Maybe<User>;
+};
+
+
+export type MutationLoginArgs = {
+  idToken: Scalars['String']['input'];
+};
+
+
+export type MutationRegisterArgs = {
+  idToken: Scalars['String']['input'];
+};
+
+export type Query = {
+  __typename?: 'Query';
+  greetings?: Maybe<Scalars['String']['output']>;
+};
+
+export type User = {
+  __typename?: 'User';
+  id: Scalars['ID']['output'];
+  testing?: Maybe<Scalars['String']['output']>;
 };

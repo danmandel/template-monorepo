@@ -43,8 +43,8 @@ module.exports = {
   },
   overrides: [
     {
-      // Model.ts files must have default exports
-      files: ['src/datastructures/**/model.ts', 'src/algorithms/initializeDb.ts'],
+      // These files must have default exports.
+      files: ['src/datastructures/**/model.ts', 'src/algorithms/initializeDb.ts', 'codegen.ts'],
       rules: {
         'import/no-default-export': 'off',
         'import/prefer-default-export': 'error',

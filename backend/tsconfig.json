@@ -20,5 +20,5 @@
     "emitDecoratorMetadata": true, // For TypeORM
     "strictPropertyInitialization": false // For TypeORM
   },
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "src/generated"]
 }

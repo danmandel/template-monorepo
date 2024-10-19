@@ -4,17 +4,29 @@ import { schema } from './src/api';
 
 const config: CodegenConfig = {
   schema: printSchema(schema),
-  //   documents: './src/**/*.graphql', // Location of your operations (queries/mutations)
   generates: {
-    './src/generated/graphql.tsx': {
+    '../frontend/src/generated/graphql.tsx': {
       plugins: [
+        {
+          add: {
+            content: '/* eslint-disable */',
+          },
+        },
         'typescript',
         'typescript-operations',
-        // 'typescript-react-apollo', // Frontend: React Apollo hooks
+        'typescript-react-apollo',
       ],
     },
     './src/generated/resolvers-types.ts': {
-      plugins: ['typescript', 'typescript-resolvers'],
+      plugins: [
+        {
+          add: {
+            content: '/* eslint-disable */',
+          },
+        },
+        'typescript',
+        'typescript-resolvers',
+      ],
     },
   },
   config: {
