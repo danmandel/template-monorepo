@@ -3,14 +3,16 @@
   "module": "index.ts",
   "type": "module",
   "scripts": {
+    "codegen": "graphql-codegen --config codegen.ts",
     "lint": "eslint --ext .ts src/",
     "lint:docker:dev": "docker compose -f docker-compose.yml -f docker-compose.dev.yml config",
     "lint:docker:prod": "docker compose -f docker-compose.yml -f docker-compose.prod.yml config",
     "#TODO_dev:watch": "bun --watch index.ts",
-    "dev": "bun --hot index.ts",
+    "hot": "bun --hot index.ts",
+    "dev": "bun --watch index.ts",
     "start": "bun run index.ts",
     "infra": "bun run docker:dev",
-    "docker:dev": "docker compose -f docker-compose.yml -f docker-compose.dev.yml up && open http://localhost:3000",
+    "docker:dev": "docker compose -f docker-compose.yml -f docker-compose.dev.yml up --build && open http://localhost:3000",
     "docker:prod": "docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build",
     "migration:create": "bun bin/createMigration.ts",
     "migration:generate": "bun bin/generateMigration.ts",
@@ -29,6 +31,9 @@
     "typeorm": "0.3.20"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.3",
+    "@graphql-codegen/typescript": "^4.1.0",
+    "@graphql-codegen/typescript-resolvers": "^4.3.0",
     "@types/bun": "latest",
     "@typescript-eslint/eslint-plugin": "^8.8.1",
     "@typescript-eslint/parser": "^8.8.1",
