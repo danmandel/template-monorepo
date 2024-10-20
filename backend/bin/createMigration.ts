@@ -8,7 +8,7 @@ if (!migrationName) {
 }
 
 exec(
-  `bun node_modules/typeorm/cli.js migration:create src/algorithms/migrations/${migrationName}`,
+  `bun node_modules/typeorm/cli.js migration:create src/migrations/${migrationName}`,
   (error: Error | null, stdout: string, stderr: string) => {
     if (error) {
       console.error(`Error creating migration: ${error.message}`);

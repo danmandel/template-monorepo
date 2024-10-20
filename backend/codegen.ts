@@ -5,7 +5,7 @@ import { schema } from './src/api';
 // https://the-guild.dev/graphql/codegen/docs/config-reference/codegen-config
 const config: CodegenConfig = {
   schema: printSchema(schema),
-  documents: ['../frontend/src/datastructures/**/*.graphql'],
+  documents: ['../frontend/src/modules/**/*.graphql'],
   generates: {
     '../frontend/src/generated/graphql.tsx': {
       plugins: [
@@ -29,6 +29,12 @@ const config: CodegenConfig = {
         'typescript',
         'typescript-resolvers',
       ],
+    },
+    './src/generated/schema.json': {
+      plugins: ['introspection'],
+    },
+    '../frontend/src/generated/schema.json': {
+      plugins: ['introspection'],
     },
   },
   config: {

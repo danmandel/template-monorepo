@@ -1,10 +1,13 @@
 import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
-import { initializeDb } from './initializeDb';
-import { schema } from '../api';
+// import { initializeApp } from 'firebase-admin';
+import { initializeDb } from './db';
+import { schema } from './api';
 
 export const startServer = async () => {
   await initializeDb();
+  // const serviceAccount = await import('../../serviceAccountKey.dev.json');
+  // initializeApp({ credential: serviceAccount } as any);
 
   const server = new ApolloServer({ schema });
 
