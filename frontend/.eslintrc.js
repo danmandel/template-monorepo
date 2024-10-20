@@ -80,7 +80,11 @@ module.exports = {
   overrides: [
     // Supports pages and app router
     {
-      files: ['src/pages/**/*', 'src/app/**/{page,layout,not-found}.tsx', '*.config.mjs'],
+      files: [
+        'src/pages/**/*',
+        'src/app/**/{page,layout,not-found}.tsx',
+        '*.config.{mjs,js,js,ts}',
+      ],
       rules: {
         'import/no-default-export': 'off',
       },
