@@ -16,12 +16,16 @@ export type Scalars = {
   Int: { input: number; output: number; }
   Float: { input: number; output: number; }
   DateTime: { input: any; output: any; }
+  EmailAddress: { input: any; output: any; }
+  JSON: { input: any; output: any; }
 };
 
 export type Event = {
   __typename?: 'Event';
   aggregateId: Scalars['ID']['output'];
   id: Scalars['ID']['output'];
+  payload: Scalars['JSON']['output'];
+  timestamp: Scalars['DateTime']['output'];
   type: Scalars['String']['output'];
 };
 
@@ -50,7 +54,7 @@ export type User = {
   __typename?: 'User';
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   displayName?: Maybe<Scalars['String']['output']>;
-  email?: Maybe<Scalars['String']['output']>;
+  email?: Maybe<Scalars['EmailAddress']['output']>;
   firebaseUid?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
@@ -129,8 +133,10 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 export type ResolversTypes = {
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
   DateTime: ResolverTypeWrapper<Scalars['DateTime']['output']>;
+  EmailAddress: ResolverTypeWrapper<Scalars['EmailAddress']['output']>;
   Event: ResolverTypeWrapper<Event>;
   ID: ResolverTypeWrapper<Scalars['ID']['output']>;
+  JSON: ResolverTypeWrapper<Scalars['JSON']['output']>;
   Mutation: ResolverTypeWrapper<{}>;
   Query: ResolverTypeWrapper<{}>;
   String: ResolverTypeWrapper<Scalars['String']['output']>;
@@ -141,8 +147,10 @@ export type ResolversTypes = {
 export type ResolversParentTypes = {
   Boolean: Scalars['Boolean']['output'];
   DateTime: Scalars['DateTime']['output'];
+  EmailAddress: Scalars['EmailAddress']['output'];
   Event: Event;
   ID: Scalars['ID']['output'];
+  JSON: Scalars['JSON']['output'];
   Mutation: {};
   Query: {};
   String: Scalars['String']['output'];
@@ -153,12 +161,22 @@ export interface DateTimeScalarConfig extends GraphQLScalarTypeConfig<ResolversT
   name: 'DateTime';
 }
 
+export interface EmailAddressScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['EmailAddress'], any> {
+  name: 'EmailAddress';
+}
+
 export type EventResolvers<ContextType = any, ParentType extends ResolversParentTypes['Event'] = ResolversParentTypes['Event']> = {
   aggregateId?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  payload?: Resolver<ResolversTypes['JSON'], ParentType, ContextType>;
+  timestamp?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>;
   type?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
+
+export interface JsonScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['JSON'], any> {
+  name: 'JSON';
+}
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
   login?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<MutationLoginArgs, 'idToken'>>;
@@ -172,7 +190,7 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
 export type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
   createdAt?: Resolver<Maybe<ResolversTypes['DateTime']>, ParentType, ContextType>;
   displayName?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  email?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  email?: Resolver<Maybe<ResolversTypes['EmailAddress']>, ParentType, ContextType>;
   firebaseUid?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   updatedAt?: Resolver<Maybe<ResolversTypes['DateTime']>, ParentType, ContextType>;
@@ -181,7 +199,9 @@ export type UserResolvers<ContextType = any, ParentType extends ResolversParentT
 
 export type Resolvers<ContextType = any> = {
   DateTime?: GraphQLScalarType;
+  EmailAddress?: GraphQLScalarType;
   Event?: EventResolvers<ContextType>;
+  JSON?: GraphQLScalarType;
   Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
   User?: UserResolvers<ContextType>;

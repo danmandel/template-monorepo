@@ -5,7 +5,7 @@ export const typeDef = gql`
     id: ID!
     aggregateId: ID!
     type: String!
-    # payload: JSON!
-    # timestamp: DateTime!
+    payload: JSON!
+    timestamp: DateTime!
   }
 `;

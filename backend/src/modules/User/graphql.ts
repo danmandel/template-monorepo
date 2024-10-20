@@ -28,7 +28,7 @@ export const typeDef = gql`
   type User {
     id: ID!
     firebaseUid: String
-    email: String
+    email: EmailAddress
     displayName: String
     createdAt: DateTime
     updatedAt: DateTime

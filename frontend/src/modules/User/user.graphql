@@ -1,0 +1,16 @@
+fragment userFragment on User {
+  id
+  email
+}
+
+mutation login($idToken: String!) {
+  login(idToken: $idToken) {
+    ...userFragment
+  }
+}
+
+mutation register($idToken: String!) {
+  register(idToken: $idToken) {
+    ...userFragment
+  }
+}

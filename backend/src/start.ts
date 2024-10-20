@@ -1,4 +1,4 @@
-import { startServer } from './startServer';
+import { startServer } from './server';
 
 export const start = async () => {
   console.log('🚀 Starting..');
