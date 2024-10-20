@@ -7,11 +7,11 @@ const config: CodegenConfig = {
   schema: printSchema(schema),
   documents: ['../frontend/src/modules/**/operations.graphql'],
   generates: {
-    '../frontend/src/generated/graphql.tsx': {
+    '../frontend/src/generated/graphql.ts': {
       plugins: [
         {
           add: {
-            content: '/* eslint-disable */',
+            content: '/* eslint-disable */\n// @ts-nocheck',
           },
         },
         'typescript',
@@ -19,11 +19,11 @@ const config: CodegenConfig = {
         'typescript-react-apollo',
       ],
     },
-    './src/generated/resolvers-types.ts': {
+    './src/generated/resolver-types.ts': {
       plugins: [
         {
           add: {
-            content: '/* eslint-disable */',
+            content: '/* eslint-disable */\n// @ts-nocheck',
           },
         },
         'typescript',
@@ -39,7 +39,7 @@ const config: CodegenConfig = {
   },
   config: {
     skipTypename: false,
-    withHooks: true,
+    withHooks: true, // Enable codegen for React hooks
   },
 };
 
