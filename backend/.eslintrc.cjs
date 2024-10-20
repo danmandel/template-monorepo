@@ -44,7 +44,7 @@ module.exports = {
   overrides: [
     {
       // These files must have default exports.
-      files: ['src/modules/**/model.ts', 'src/db.ts', 'codegen.ts'],
+      files: ['src/modules/**/model.ts', 'src/db.ts', 'codegen.ts', 'apollo.config.ts'],
       rules: {
         'import/no-default-export': 'off',
         'import/prefer-default-export': 'error',

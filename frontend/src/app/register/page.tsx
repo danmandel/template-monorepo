@@ -9,7 +9,8 @@ import {
 import { useState } from 'react';
 import { GoogleButton } from '@/components/GoogleButton';
 import 'tailwindcss/tailwind.css';
-import { analytics, app } from '@/lib/firebase';
+import { useRegisterMutation } from '@/generated/graphql';
+import { app } from '@/lib/firebase';
 
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
@@ -18,12 +19,13 @@ const RegisterPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [register] = useRegisterMutation();
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      alert('Account created successfully!');
+      const { user } = await createUserWithEmailAndPassword(auth, email, password);
+      await register({ variables: { idToken: await user.getIdToken() } });
     } catch (error) {
       setError((error as Error).message);
     }

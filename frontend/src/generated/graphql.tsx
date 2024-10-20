@@ -17,12 +17,16 @@ export type Scalars = {
   Int: { input: number; output: number; }
   Float: { input: number; output: number; }
   DateTime: { input: any; output: any; }
+  EmailAddress: { input: any; output: any; }
+  JSON: { input: any; output: any; }
 };
 
 export type Event = {
   __typename?: 'Event';
   aggregateId: Scalars['ID']['output'];
   id: Scalars['ID']['output'];
+  payload: Scalars['JSON']['output'];
+  timestamp: Scalars['DateTime']['output'];
   type: Scalars['String']['output'];
 };
 
@@ -51,31 +55,34 @@ export type User = {
   __typename?: 'User';
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   displayName?: Maybe<Scalars['String']['output']>;
-  email?: Maybe<Scalars['String']['output']>;
+  email?: Maybe<Scalars['EmailAddress']['output']>;
   firebaseUid?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
 
-export type UserFragmentFragment = { __typename?: 'User', id: string };
+export type UserFragmentFragment = { __typename?: 'User', id: string, email?: any | null, createdAt?: any | null, displayName?: string | null };
 
 export type LoginMutationVariables = Exact<{
   idToken: Scalars['String']['input'];
 }>;
 
 
-export type LoginMutation = { __typename?: 'Mutation', login?: { __typename?: 'User', id: string } | null };
+export type LoginMutation = { __typename?: 'Mutation', login?: { __typename?: 'User', id: string, email?: any | null, createdAt?: any | null, displayName?: string | null } | null };
 
 export type RegisterMutationVariables = Exact<{
   idToken: Scalars['String']['input'];
 }>;
 
 
-export type RegisterMutation = { __typename?: 'Mutation', register?: { __typename?: 'User', id: string } | null };
+export type RegisterMutation = { __typename?: 'Mutation', register?: { __typename?: 'User', id: string, email?: any | null, createdAt?: any | null, displayName?: string | null } | null };
 
 export const UserFragmentFragmentDoc = gql`
     fragment userFragment on User {
   id
+  email
+  createdAt
+  displayName
 }
     `;
 export const LoginDocument = gql`
