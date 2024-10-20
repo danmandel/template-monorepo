@@ -25,6 +25,7 @@
     "@apollo/server": "^4.11.0",
     "firebase-admin": "^12.6.0",
     "graphql": "^16.9.0",
+    "graphql-scalars": "^1.23.0",
     "graphql-tag": "^2.12.6",
     "pg": "^8.4.0",
     "reflect-metadata": "^0.1.13",

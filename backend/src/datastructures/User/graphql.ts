@@ -20,12 +20,17 @@ export const typeDef = gql`
     greetings: String
   }
 
-  type User {
-    id: ID!
-  }
-
   type Mutation {
     register(idToken: String!): User
     login(idToken: String!): User
+  }
+
+  type User {
+    id: ID!
+    firebaseUid: String
+    email: String
+    displayName: String
+    createdAt: DateTime
+    updatedAt: DateTime
   }
 `;
