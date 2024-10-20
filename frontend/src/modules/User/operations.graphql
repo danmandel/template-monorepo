@@ -1,6 +1,8 @@
 fragment userFragment on User {
   id
   email
+  createdAt
+  displayName
 }
 
 mutation login($idToken: String!) {
