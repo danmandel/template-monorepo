@@ -5,3 +5,5 @@ tmp/
 todo.md
 .env.development
 .env.production
+serviceAccountKey.dev.json
+serviceAccountKey.prod.json

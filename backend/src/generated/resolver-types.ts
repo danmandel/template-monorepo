@@ -54,6 +54,7 @@ export type Query = {
 
 export type User = {
   __typename?: 'User';
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
   displayName?: Maybe<Scalars['String']['output']>;
   email?: Maybe<Scalars['EmailAddress']['output']>;
   firebaseUid?: Maybe<Scalars['String']['output']>;
@@ -190,6 +191,7 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
 };
 
 export type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
+  createdAt?: Resolver<Maybe<ResolversTypes['DateTime']>, ParentType, ContextType>;
   displayName?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   email?: Resolver<Maybe<ResolversTypes['EmailAddress']>, ParentType, ContextType>;
   firebaseUid?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
