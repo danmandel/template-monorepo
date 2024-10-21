@@ -3,6 +3,7 @@ import localFont from 'next/font/local';
 import { ThemeProvider } from 'next-themes';
 import { Header } from '@/components/Header/Header';
 import './globals.css';
+import { ApolloProvider } from '@/elements/ApolloProvider';
 import { project } from '@/project';
 
 const geistSans = localFont({
@@ -32,15 +33,17 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} g-white text-white antialiased dark:bg-black dark:text-black`}
       >
-        <ThemeProvider
-          // attribute="class"
-          defaultTheme='system'
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Header />
-          {children}
-        </ThemeProvider>
+        <ApolloProvider>
+          <ThemeProvider
+            // attribute="class"
+            defaultTheme='system'
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Header />
+            {children}
+          </ThemeProvider>
+        </ApolloProvider>
       </body>
     </html>
   );
