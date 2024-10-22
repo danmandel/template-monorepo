@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 import { login, register } from './service';
-import type { Resolvers } from '../../generated/resolvers-types';
+import type { Resolvers } from '../../generated/resolver-types';
 
 export const resolvers: Resolvers = {
   Query: {
