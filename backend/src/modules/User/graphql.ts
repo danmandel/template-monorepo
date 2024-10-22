@@ -1,9 +1,10 @@
 import gql from 'graphql-tag';
 import { login, register } from './service';
+import type { Resolvers } from '../../generated/resolver-types';
 
-export const resolvers = {
+export const resolvers: Resolvers = {
   Query: {
-    greetings: () => 'Hello from Apollo in a Bun app!',
+    // greetings: () => 'Hello from Apollo in a Bun app!',
   },
   Mutation: {
     register: async (_: any, { idToken }: { idToken: string }) => {
@@ -17,7 +18,8 @@ export const resolvers = {
 
 export const typeDef = gql`
   type Query {
-    greetings: String
+    user: User
+    users: [User!]!
   }
 
   type Mutation {

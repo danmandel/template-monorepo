@@ -8,7 +8,7 @@ const AppDataSource = new DataSource({
   username: process.env.POSTGRES_USER || 'dev',
   password: process.env.POSTGRES_PASSWORD || 'devpass',
   database: process.env.POSTGRES_DB || 'dev_db',
-  synchronize: false,
+  synchronize: true, // TODO: set to false + generate migrationsonce development is done.
   logging: true,
   entities: ['src/modules/*/model.ts'],
   migrations: ['src/migrations/*.ts'],
