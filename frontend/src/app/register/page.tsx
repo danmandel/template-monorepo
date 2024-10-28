@@ -1,18 +1,12 @@
 'use client';
 
-import {
-  createUserWithEmailAndPassword,
-  getAuth,
-  GoogleAuthProvider,
-  signInWithPopup,
-} from 'firebase/auth';
+import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { useState } from 'react';
 import { GoogleButton } from '@/components/GoogleButton';
 import 'tailwindcss/tailwind.css';
 import { useRegisterMutation } from '@/generated/graphql';
-import { app } from '@/lib/firebase';
+import { auth } from '@/lib/firebase';
 
-const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
 const RegisterPage = () => {
@@ -25,6 +19,7 @@ const RegisterPage = () => {
     e.preventDefault();
     try {
       const { user } = await createUserWithEmailAndPassword(auth, email, password);
+      console.log('user', user);
       await register({ variables: { idToken: await user.getIdToken() } });
     } catch (error) {
       setError((error as Error).message);
@@ -33,8 +28,9 @@ const RegisterPage = () => {
 
   const handleGoogleSignIn = async (): Promise<void> => {
     try {
-      await signInWithPopup(auth, provider);
-      alert('Signed in with Google successfully!');
+      const { user } = await signInWithPopup(auth, provider);
+      await register({ variables: { idToken: await user.getIdToken() } });
+      console.log('user', user);
     } catch (error) {
       setError((error as Error).message);
     }

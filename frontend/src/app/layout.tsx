@@ -1,8 +1,10 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import { ThemeProvider } from 'next-themes';
-import { Header } from '@/components/Header/Header';
+import { AppSidebar } from '@/components/app-sidebar';
+import { Header } from '@/components/layout/header';
 import './globals.css';
+import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 import { ApolloProvider } from '@/elements/ApolloProvider';
 import { project } from '@/project';
 
@@ -29,21 +31,26 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en'>
+    <html lang='en' suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} g-white text-white antialiased dark:bg-black dark:text-black`}
+        className={`flex h-screen ${geistSans.variable} ${geistMono.variable} g-white text-white antialiased dark:bg-black dark:text-black`}
       >
-        <ApolloProvider>
-          <ThemeProvider
-            // attribute="class"
-            defaultTheme='system'
-            enableSystem
-            disableTransitionOnChange
-          >
-            <Header />
-            {children}
-          </ThemeProvider>
-        </ApolloProvider>
+        <ThemeProvider
+          attribute='class'
+          defaultTheme='system'
+          enableSystem
+          disableTransitionOnChange
+        >
+          <ApolloProvider>
+            <SidebarProvider>
+              <AppSidebar />
+              <main className='flex flex-1 flex-col'>
+                <Header />
+                {children}
+              </main>
+            </SidebarProvider>
+          </ApolloProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
