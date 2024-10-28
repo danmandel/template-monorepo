@@ -1,11 +1,10 @@
 import { useRouter } from 'next/router';
-import styles from '../styles/Home.module.css';
 
-export const HomePage = () => {
+export const Home = () => {
   const router = useRouter();
 
   return (
-    <div className={styles.container}>
+    <div className='flex h-screen flex-col items-center justify-center'>
       <h1>Home page</h1>
       <button onClick={() => router.push('/route1')}>Route 1</button>
     </div>
