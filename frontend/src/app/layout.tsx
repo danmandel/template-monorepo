@@ -31,27 +31,26 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en'>
+    <html lang='en' suppressHydrationWarning>
       <body
         className={`flex h-screen ${geistSans.variable} ${geistMono.variable} g-white text-white antialiased dark:bg-black dark:text-black`}
       >
-        <ApolloProvider>
-          <ThemeProvider
-            attribute='class'
-            defaultTheme='system'
-            enableSystem
-            disableTransitionOnChange
-          >
+        <ThemeProvider
+          attribute='class'
+          defaultTheme='system'
+          enableSystem
+          disableTransitionOnChange
+        >
+          <ApolloProvider>
             <SidebarProvider>
               <AppSidebar />
               <main className='flex flex-1 flex-col'>
                 <Header />
-                <SidebarTrigger />
                 {children}
               </main>
             </SidebarProvider>
-          </ThemeProvider>
-        </ApolloProvider>
+          </ApolloProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

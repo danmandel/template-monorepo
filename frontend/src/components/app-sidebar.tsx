@@ -4,6 +4,7 @@ import {
   Bot,
   Command,
   Frame,
+  LayoutDashboardIcon,
   LifeBuoy,
   Map,
   PieChart,
@@ -33,28 +34,34 @@ const data = {
     name: 'Dan',
     email: 'danmandel@gmail.com',
     displayName: 'Dan94',
-    avatar: '/avatars/shadcn.jpg',
+    avatar: '/avatars/default_avatar.png',
   },
   navMain: [
+    // {
+    //   title: 'Playground',
+    //   url: '#',
+    //   icon: SquareTerminal,
+    //   isActive: true,
+    //   items: [
+    //     {
+    //       title: 'History',
+    //       url: '#',
+    //     },
+    //     {
+    //       title: 'Starred',
+    //       url: '#',
+    //     },
+    //     {
+    //       title: 'Settings',
+    //       url: '#',
+    //     },
+    //   ],
+    // },
     {
-      title: 'Playground',
-      url: '#',
-      icon: SquareTerminal,
+      title: 'Dashboard',
+      url: '/dashboard',
+      icon: LayoutDashboardIcon,
       isActive: true,
-      items: [
-        {
-          title: 'History',
-          url: '#',
-        },
-        {
-          title: 'Starred',
-          url: '#',
-        },
-        {
-          title: 'Settings',
-          url: '#',
-        },
-      ],
     },
     {
       title: 'My',
@@ -178,7 +185,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 </div>
                 <div className='grid flex-1 text-left text-sm leading-tight'>
                   <span className='truncate font-semibold'>{project.title}</span>
-                  <span className='truncate text-xs'>{project.description}</span>
+                  <span className='truncate text-xs'>{project.subtitle}</span>
                 </div>
               </a>
             </SidebarMenuButton>
@@ -193,9 +200,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavProjects projects={data.projects} />
         <NavSecondary items={data.navSecondary} className='mt-auto' />
       </SidebarContent>
-      <SidebarFooter>
-        <NavUser user={data.user} />
-      </SidebarFooter>
+      <SidebarFooter>{/* <NavUser user={data.user} /> */}</SidebarFooter>
     </Sidebar>
   );
 }
