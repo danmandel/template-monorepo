@@ -5,11 +5,14 @@ import {
   Bell,
   ChevronsUpDown,
   CreditCard,
-  LogOut,
-  Sparkles,
   LogIn,
+  LogOut,
+  Moon,
+  Sparkles,
+  SunMoon,
 } from 'lucide-react';
-
+import { useTheme } from 'next-themes';
+import { useState } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import {
   DropdownMenu,
@@ -26,10 +29,11 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from '@/components/ui/sidebar';
-import { AuthDialog } from './ui/auth-dialog2';
-import { useState } from 'react';
+import { AuthDialog } from './auth/auth-dialog';
 
-export function NavUser({
+// import { AuthDialog } from './ui/auth-dialog';
+
+export const NavUser = ({
   user,
 }: {
   user: {
@@ -38,12 +42,15 @@ export function NavUser({
     avatar: string;
     displayName: string;
   };
-}) {
+}) => {
   const { isMobile } = useSidebar();
 
   const isLoggedIn = false;
   const [isAuthOpen, setIsAuthOpen] = useState(false);
 
+  const { setTheme, theme } = useTheme();
+  const isDarkMode = theme === 'dark';
+  console.log({ isDarkMode, theme });
   return (
     <>
       <SidebarMenu>
@@ -84,6 +91,10 @@ export function NavUser({
                 </div>
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
+              <DropdownMenuItem onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
+                {isDarkMode ? <SunMoon /> : <Moon />}
+                Enable {isDarkMode ? 'Light' : 'Dark'} Mode
+              </DropdownMenuItem>
 
               {isLoggedIn ? (
                 <>
@@ -127,4 +138,4 @@ export function NavUser({
       <AuthDialog isOpen={isAuthOpen} onClose={() => setIsAuthOpen(false)} />
     </>
   );
-}
+};
