@@ -129,6 +129,7 @@ export const NavUser = ({
                 <DropdownMenuItem onClick={() => setIsAuthOpen(true)}>
                   <LogIn />
                   Sign In / Register
+                  {/* TODO: Make these separate buttons that affect which tab is opened */}
                 </DropdownMenuItem>
               )}
             </DropdownMenuContent>

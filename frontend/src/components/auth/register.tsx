@@ -62,15 +62,17 @@ export const Register = () => {
       </div>
       {error && <p className='text-sm text-red-500'>{error}</p>}
       <Button className='w-full' onClick={handleRegister}>
-        Register
+        Create Account
       </Button>
+      {/* TODO: "Browsewrap Agreement" By clicking 'Create Account' you confirm that you agree to our Terms of Service and Privacy Policy. */}
+      {/* TODO: "Clickwrap agreement: checkbox - I agree to the [Terms & Conditions](link)" */}
       <div className='my-4 flex items-center text-center text-gray-500 dark:text-gray-400'>
         <hr className='my-2 grow' />
-        <span className='mx-2'>Or register with</span>
+        <span className='mx-2'>Or</span>
         <hr className='my-2 grow' />
       </div>
 
-      <GoogleButton onClick={handleGoogleRegister} />
+      <GoogleButton onClick={handleGoogleRegister} action='register' />
     </div>
   );
 };

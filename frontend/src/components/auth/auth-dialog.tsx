@@ -14,9 +14,9 @@ export const AuthDialog = ({ isOpen, onClose }: AuthDialogProps) => (
   <Dialog open={isOpen} onOpenChange={onClose}>
     <DialogContent className='sm:max-w-[425px]'>
       <DialogHeader>
-        <DialogTitle className='text-black dark:text-gray-300'>Authentication</DialogTitle>
+        <DialogTitle className='text-black dark:text-gray-300'>Get Started</DialogTitle>
       </DialogHeader>
-      <Tabs defaultValue='signin' className='w-full'>
+      <Tabs defaultValue='register' className='w-full'>
         <TabsList className='grid w-full grid-cols-2'>
           <TabsTrigger value='signin'>Sign In</TabsTrigger>
           <TabsTrigger value='register'>Register</TabsTrigger>

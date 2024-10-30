@@ -69,13 +69,17 @@ export const Login = () => {
       <Button className='w-full' onClick={handleLogin}>
         Sign In
       </Button>
+      {/* TODO: Forgot password? */}
+      {/* TODO: Remember me btn? */}
+      {/* TODO: Not a member? Create an account here */}
+
       <div className='my-4 flex items-center text-center text-gray-500 dark:text-gray-400'>
         <hr className='my-2 grow' />
-        <span className='mx-2'>Or sign in with</span>
+        <span className='mx-2'>Or</span>
         <hr className='my-2 grow' />
       </div>
-
-      <GoogleButton onClick={handleGoogleSignIn} />
+      {/* TODO: What if the user signs in before registering? */}
+      <GoogleButton onClick={handleGoogleSignIn} action='signin' />
     </div>
   );
 };
