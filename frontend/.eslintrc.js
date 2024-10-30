@@ -13,11 +13,14 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   extends: [
     'next',
+    'next/core-web-vitals',
     'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/stylistic-type-checked',
     'plugin:prettier/recommended',
     'plugin:tailwindcss/recommended',
   ],
   parserOptions: {
+    project: './tsconfig.json',
     babelOptions: {
       presets: [require.resolve('next/babel')],
     },
