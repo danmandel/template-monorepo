@@ -2,7 +2,7 @@
 
 import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { useState } from 'react';
-import { GoogleButton } from '@/components/GoogleButton';
+import { GoogleButton } from '@/components/auth/google-button';
 import 'tailwindcss/tailwind.css';
 import { useRegisterMutation } from '@/generated/graphql';
 import { auth } from '@/lib/firebase';
