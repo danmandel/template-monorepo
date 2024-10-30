@@ -4,7 +4,7 @@ import { ThemeProvider } from 'next-themes';
 import { AppSidebar } from '@/components/app-sidebar';
 import { Header } from '@/components/layout/header';
 import './globals.css';
-import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
+import { SidebarProvider } from '@/components/ui/sidebar';
 import { ApolloProvider } from '@/elements/ApolloProvider';
 import { project } from '@/project';
 

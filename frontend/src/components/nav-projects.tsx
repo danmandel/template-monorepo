@@ -19,7 +19,7 @@ import {
   useSidebar,
 } from '@/components/ui/sidebar';
 
-export function NavProjects({
+export const NavProjects = ({
   projects,
 }: {
   projects: {
@@ -27,7 +27,7 @@ export function NavProjects({
     url: string;
     icon: LucideIcon;
   }[];
-}) {
+}) => {
   const { isMobile } = useSidebar();
 
   return (
@@ -80,4 +80,4 @@ export function NavProjects({
       </SidebarMenu>
     </SidebarGroup>
   );
-}
+};

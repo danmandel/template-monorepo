@@ -1,16 +1,22 @@
 'use client';
 import {
+  Atom,
   BookOpen,
   Bot,
+  CircleUserRound,
   Command,
   Frame,
+  Home,
   LayoutDashboardIcon,
+  LayoutGrid,
   LifeBuoy,
   Map,
   PieChart,
+  Search,
   Send,
   Settings2,
   SquareTerminal,
+  Store,
 } from 'lucide-react';
 import * as React from 'react';
 
@@ -36,110 +42,126 @@ const data = {
     displayName: 'Dan94',
     avatar: '/avatars/default_avatar.png',
   },
+  guest: {
+    name: 'Guest',
+    email: 'guest@gmail.com',
+    displayName: 'Guest314159',
+    avatar: '/avatars/guest.jpg',
+  },
   navMain: [
+    {
+      title: 'Home',
+      url: '/home',
+      icon: Home,
+    },
+    {
+      title: 'Projects',
+      url: '/projects',
+      icon: LayoutGrid,
+    },
+    {
+      title: 'About',
+      url: '/about',
+      icon: Home,
+    },
+    {
+      title: 'Store',
+      url: '/store',
+      icon: Store,
+    },
+    {
+      title: 'Contact',
+      url: '/contact',
+      icon: Home,
+    },
     // {
-    //   title: 'Playground',
-    //   url: '#',
-    //   icon: SquareTerminal,
+    //   title: 'Dashboard',
+    //   url: '/dashboard',
+    //   icon: LayoutDashboardIcon,
     //   isActive: true,
+    // },
+    // {
+    //   title: 'Explore',
+    //   url: '/explore',
+    //   icon: Search,
+    // },
+    // {
+    //   title: 'Account',
+    //   url: '#',
+    //   icon: CircleUserRound,
     //   items: [
+    //     {
+    //       title: 'Inventory',
+    //       url: '#',
+    //     },
     //     {
     //       title: 'History',
     //       url: '#',
     //     },
     //     {
-    //       title: 'Starred',
+    //       title: 'Inbox',
     //       url: '#',
     //     },
     //     {
-    //       title: 'Settings',
+    //       title: 'Friends',
+    //       url: '#',
+    //     },
+    //     {
+    //       title: 'Favorites',
     //       url: '#',
     //     },
     //   ],
     // },
-    {
-      title: 'Dashboard',
-      url: '/dashboard',
-      icon: LayoutDashboardIcon,
-      isActive: true,
-    },
-    {
-      title: 'My',
-      url: '#',
-      icon: Bot,
-      items: [
-        {
-          title: 'Inventory',
-          url: '#',
-        },
-        {
-          title: 'History',
-          url: '#',
-        },
-        {
-          title: 'Inbox',
-          url: '#',
-        },
-        {
-          title: 'Friends',
-          url: '#',
-        },
-        {
-          title: 'Favorites',
-          url: '#',
-        },
-      ],
-    },
-    {
-      title: 'Documentation',
-      url: '#',
-      icon: BookOpen,
-      items: [
-        {
-          title: 'Introduction',
-          url: '#',
-        },
-        {
-          title: 'Get Started',
-          url: '#',
-        },
-        {
-          title: 'Tutorials',
-          url: '#',
-        },
-        {
-          title: 'Changelog',
-          url: '#',
-        },
-      ],
-    },
-    {
-      title: 'Settings',
-      url: '#',
-      icon: Settings2,
-      items: [
-        {
-          title: 'General',
-          url: '#',
-        },
-        {
-          title: 'Team',
-          url: '#',
-        },
-        {
-          title: 'Billing',
-          url: '#',
-        },
-        {
-          title: 'Limits',
-          url: '#',
-        },
-        {
-          title: 'Security',
-          url: '#',
-        },
-      ],
-    },
+    // {
+    //   title: 'Documentation',
+    //   url: '#',
+    //   icon: BookOpen,
+    //   items: [
+    //     {
+    //       title: 'Introduction',
+    //       url: '#',
+    //     },
+    //     {
+    //       title: 'Get Started',
+    //       url: '#',
+    //     },
+    //     {
+    //       title: 'Tutorials',
+    //       url: '#',
+    //     },
+    //     {
+    //       title: 'Changelog',
+    //       url: '#',
+    //     },
+    //   ],
+    // },
+    // {
+    //   title: 'Settings',
+    //   url: '#',
+    //   icon: Settings2,
+    //   items: [
+    //     {
+    //       title: 'General',
+    //       url: '#',
+    //     },
+    //     {
+    //       title: 'Team',
+    //       url: '#',
+    //     },
+    //     {
+    //       title: 'Billing',
+    //       url: '#',
+    //     },
+    //     {
+    //       title: 'Limits',
+    //       url: '#',
+    //     },
+    //     {
+    //       title: 'Security',
+    //       url: '#',
+    //     },
+    //   ],
+    // },
   ],
   navSecondary: [
     {
@@ -172,7 +194,9 @@ const data = {
   ],
 };
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export const AppSidebar = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {
+  const isLoggedIn = false;
+  const user = isLoggedIn ? data.user : data.guest;
   return (
     <Sidebar variant='inset' {...props}>
       <SidebarHeader>
@@ -180,8 +204,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <SidebarMenuItem>
             <SidebarMenuButton size='lg' asChild>
               <a href='#'>
-                <div className='bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg'>
-                  <Command className='size-4' />
+                <div className='flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground'>
+                  <Atom className='size-4' />
                 </div>
                 <div className='grid flex-1 text-left text-sm leading-tight'>
                   <span className='truncate font-semibold'>{project.title}</span>
@@ -191,16 +215,23 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             </SidebarMenuButton>
           </SidebarMenuItem>
           <SidebarMenuItem>
-            <NavUser user={data.user} />
+            <SidebarMenuButton size='lg' asChild>
+              <NavUser user={user} />
+            </SidebarMenuButton>
           </SidebarMenuItem>
+          {/* <SidebarMenuItem>
+            <SidebarMenuButton size='lg' asChild>
+              <NavUser user={data.user} />
+            </SidebarMenuButton>
+          </SidebarMenuItem> */}
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
+        {/* <NavProjects projects={data.projects} /> */}
         <NavSecondary items={data.navSecondary} className='mt-auto' />
       </SidebarContent>
-      <SidebarFooter>{/* <NavUser user={data.user} /> */}</SidebarFooter>
+      {/* <SidebarFooter><NavUser user={data.user} /></SidebarFooter> */}
     </Sidebar>
   );
-}
+};
