@@ -1,16 +1,13 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const fs = require('fs');
 
-function getDirectoriesToSort() {
+const getDirectoriesToSort = () => {
   const ignoredSortingDirectories = ['.git', '.next', '.vscode', 'node_modules'];
   return getDirectories(process.cwd()).filter((f) => !ignoredSortingDirectories.includes(f));
-}
+};
 
-function getDirectories(path) {
-  return fs.readdirSync(path).filter(function (file) {
-    return fs.statSync(path + '/' + file).isDirectory();
-  });
-}
+const getDirectories = (path) =>
+  fs.readdirSync(path).filter((file) => fs.statSync(path + '/' + file).isDirectory());
 
 module.exports = {
   parser: '@typescript-eslint/parser',
@@ -76,6 +73,10 @@ module.exports = {
       },
     ],
     'import/no-default-export': 'error',
+    'func-style': ['warn', 'expression', { allowArrowFunctions: true }],
+    'prefer-arrow-callback': 'warn',
+    'arrow-body-style': ['warn', 'as-needed'],
+    'no-confusing-arrow': ['warn', { allowParens: true }],
   },
   overrides: [
     // Supports pages and app router

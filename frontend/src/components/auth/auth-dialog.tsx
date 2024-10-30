@@ -14,7 +14,7 @@ interface AuthDialogProps {
   onClose: () => void;
 }
 
-export function AuthDialog({ isOpen, onClose }: AuthDialogProps) {
+export const AuthDialog = ({ isOpen, onClose }: AuthDialogProps) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -41,7 +41,7 @@ export function AuthDialog({ isOpen, onClose }: AuthDialogProps) {
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className='sm:max-w-[425px]'>
         <DialogHeader>
-          <DialogTitle>Authentication</DialogTitle>
+          <DialogTitle className='text-black dark:text-gray-300'>Authentication</DialogTitle>
         </DialogHeader>
         <Tabs defaultValue='signin' className='w-full'>
           <TabsList className='grid w-full grid-cols-2'>
@@ -51,7 +51,9 @@ export function AuthDialog({ isOpen, onClose }: AuthDialogProps) {
           <TabsContent value='signin' className='space-y-4'>
             <div className='space-y-4'>
               <div className='space-y-2'>
-                <Label htmlFor='email'>Email</Label>
+                <Label htmlFor='email' className='text-black dark:text-gray-300'>
+                  Email
+                </Label>
                 <Input
                   id='email'
                   type='email'
@@ -61,7 +63,9 @@ export function AuthDialog({ isOpen, onClose }: AuthDialogProps) {
                 />
               </div>
               <div className='space-y-2'>
-                <Label htmlFor='password'>Password</Label>
+                <Label htmlFor='password' className='text-black dark:text-gray-300'>
+                  Password
+                </Label>
                 <Input
                   id='password'
                   type='password'
@@ -79,7 +83,9 @@ export function AuthDialog({ isOpen, onClose }: AuthDialogProps) {
           <TabsContent value='register' className='space-y-4'>
             <div className='space-y-4'>
               <div className='space-y-2'>
-                <Label htmlFor='register-email'>Email</Label>
+                <Label htmlFor='register-email' className='text-black dark:text-gray-300'>
+                  Email
+                </Label>
                 <Input
                   id='register-email'
                   type='email'
@@ -89,7 +95,9 @@ export function AuthDialog({ isOpen, onClose }: AuthDialogProps) {
                 />
               </div>
               <div className='space-y-2'>
-                <Label htmlFor='register-password'>Password</Label>
+                <Label htmlFor='register-password' className='text-black dark:text-gray-300'>
+                  Password
+                </Label>
                 <Input
                   id='register-password'
                   type='password'
@@ -108,4 +116,4 @@ export function AuthDialog({ isOpen, onClose }: AuthDialogProps) {
       </DialogContent>
     </Dialog>
   );
-}
+};
