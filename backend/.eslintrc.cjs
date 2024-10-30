@@ -40,6 +40,10 @@ module.exports = {
     ],
     'import/no-default-export': 'error',
     '@typescript-eslint/no-explicit-any': 'off',
+    'func-style': ['warn', 'expression', { allowArrowFunctions: true }],
+    'prefer-arrow-callback': 'warn',
+    'arrow-body-style': ['warn', 'as-needed'],
+    'no-confusing-arrow': ['warn', { allowParens: true }],
   },
   overrides: [
     {
