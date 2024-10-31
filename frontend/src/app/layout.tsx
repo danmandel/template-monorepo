@@ -1,12 +1,12 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import { ThemeProvider } from 'next-themes';
+import { ApolloProvider } from '@/components/apollo-provider';
 import { AppSidebar } from '@/components/app-sidebar';
 import { Header } from '@/components/layout/header';
-import './globals.css';
 import { SidebarProvider } from '@/components/ui/sidebar';
-import { ApolloProvider } from '@/elements/ApolloProvider';
 import { project } from '@/project';
+import './globals.css';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
