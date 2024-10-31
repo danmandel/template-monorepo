@@ -20,6 +20,7 @@ import {
 } from 'lucide-react';
 import * as React from 'react';
 
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { NavMain } from '@/components/nav-main';
 import { NavProjects } from '@/components/nav-projects';
 import { NavSecondary } from '@/components/nav-secondary';
@@ -33,20 +34,21 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
+import { auth } from '@/lib/firebase';
 import { project } from '@/project';
 
 const data = {
   user: {
-    name: 'Dan',
+    // name: 'Dan',
     email: 'danmandel@gmail.com',
     displayName: 'Dan94',
-    avatar: '/avatars/default_avatar.png',
+    photoURL: '/avatars/default_avatar.png',
   },
   guest: {
     name: 'Guest',
     email: 'guest@gmail.com',
     displayName: 'Guest314159',
-    avatar: '/avatars/guest.jpg',
+    photoURL: '/avatars/guest.jpg',
   },
   navMain: [
     {
@@ -195,8 +197,11 @@ const data = {
 };
 
 export const AppSidebar = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {
-  const isLoggedIn = false;
-  const user = isLoggedIn ? data.user : data.guest;
+  const [user] = useAuthState(auth);
+  const isLoggedIn = !!user;
+  // console.log('userAuth', userAuth);
+  // console.log({ userAuth });
+  // const user = authData ?? data.guest;
   return (
     <Sidebar variant='inset' {...props}>
       <SidebarHeader>

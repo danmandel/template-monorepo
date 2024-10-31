@@ -30,27 +30,36 @@ import {
   useSidebar,
 } from '@/components/ui/sidebar';
 import { AuthDialog } from './auth/auth-dialog';
+import firebase from 'firebase/auth';
+import { auth } from '@/lib/firebase';
 
-// import { AuthDialog } from './ui/auth-dialog';
+const signOut = async () => {
+  try {
+    await auth.signOut();
+    // TODO: signout auth event
+  } catch (error) {
+    console.error('Error signing out: ', error);
+  }
+};
 
-export const NavUser = ({
-  user,
-}: {
-  user: {
-    name: string;
-    email: string;
-    avatar: string;
-    displayName: string;
-  };
-}) => {
+export const NavUser = ({ user }: { user: Partial<firebase.User> | null | undefined }) => {
   const { isMobile } = useSidebar();
 
-  const isLoggedIn = false;
+  const isLoggedIn = !!user;
   const [isAuthOpen, setIsAuthOpen] = useState(false);
 
   const { setTheme, theme } = useTheme();
   const isDarkMode = theme === 'dark';
   console.log({ isDarkMode, theme });
+
+  if (!user)
+    user = {
+      // name: 'Guest',
+      email: 'guest@gmail.com',
+      displayName: 'Guest314159',
+      photoURL: '/avatars/guest.jpg',
+    };
+
   return (
     <>
       <SidebarMenu>
@@ -62,12 +71,12 @@ export const NavUser = ({
                 className='data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground'
               >
                 <Avatar className='size-8 rounded-lg'>
-                  <AvatarImage src={user.avatar} alt={user.name} />
+                  <AvatarImage src={user.photoURL || ''} alt={user.displayName || ''} />
                   <AvatarFallback className='rounded-lg'>CN</AvatarFallback>
                 </Avatar>
                 <div className='grid flex-1 text-left text-sm leading-tight'>
-                  <span className='truncate font-semibold'>{user.name}</span>
-                  <span className='truncate text-xs'>@{user.displayName}</span>
+                  <span className='truncate font-semibold'>{user.displayName}</span>
+                  <span className='truncate text-xs'>@{'user.displayName'}</span>
                 </div>
                 <ChevronsUpDown className='ml-auto size-4' />
               </SidebarMenuButton>
@@ -81,12 +90,12 @@ export const NavUser = ({
               <DropdownMenuLabel className='p-0 font-normal'>
                 <div className='flex items-center gap-2 px-1 py-1.5 text-left text-sm'>
                   <Avatar className='size-8 rounded-lg'>
-                    <AvatarImage src={user.avatar} alt={user.name} />
+                    <AvatarImage src={user.photoURL || ''} alt={'user.name'} />
                     <AvatarFallback className='rounded-lg'>CN</AvatarFallback>
                   </Avatar>
                   <div className='grid flex-1 text-left text-sm leading-tight'>
-                    <span className='truncate font-semibold'>{user.name}</span>
-                    <span className='truncate text-xs'>@{user.displayName}</span>
+                    <span className='truncate font-semibold'>{user.displayName}</span>
+                    <span className='truncate text-xs'>@{user.displayName + '2'}</span>
                   </div>
                 </div>
               </DropdownMenuLabel>
@@ -120,7 +129,7 @@ export const NavUser = ({
                     </DropdownMenuItem>
                   </DropdownMenuGroup>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem>
+                  <DropdownMenuItem onClick={signOut}>
                     <LogOut />
                     Log out
                   </DropdownMenuItem>
