@@ -44,6 +44,8 @@ module.exports = {
     'prefer-arrow-callback': 'warn',
     'arrow-body-style': ['warn', 'as-needed'],
     'no-confusing-arrow': ['warn', { allowParens: true }],
+    'require-await': 'warn',
+    'no-return-await': 'warn',
   },
   overrides: [
     {

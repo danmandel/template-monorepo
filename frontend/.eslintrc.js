@@ -80,6 +80,10 @@ module.exports = {
     'prefer-arrow-callback': 'warn',
     'arrow-body-style': ['warn', 'as-needed'],
     'no-confusing-arrow': ['warn', { allowParens: true }],
+    'require-await': 'warn',
+    'no-return-await': 'warn',
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
   },
   overrides: [
     // Supports pages and app router
