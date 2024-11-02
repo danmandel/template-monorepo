@@ -1,10 +1,32 @@
+import firebase from 'firebase/auth';
 import { useEffect, useState } from 'react';
 import { useGetUserLazyQuery } from '@/generated/graphql';
 import { User } from '@/generated/graphql';
 import { auth } from '@/lib/firebase';
 
+const guestFirebaseUser = {
+  handle: 'Guest314159',
+  email: 'guest@gmail.com',
+  displayName: 'Guest',
+  photoURL: '/avatars/guest.jpg',
+};
+
+export const useFbUserOrGuest = () => {
+  const [user, setUser] = useState<firebase.User | typeof guestFirebaseUser>(guestFirebaseUser);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setUser(user ?? guestFirebaseUser);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  return { user };
+};
+
 // TODO: Profile? Account? User?
-export const useUser = () => {
+export const useDbUser = () => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
@@ -18,9 +40,9 @@ export const useUser = () => {
       let error: Error | null = null;
 
       try {
-        const currentUser = auth.currentUser;
-        if (currentUser) {
-          const idToken = await currentUser.getIdToken();
+        const firebaseUser = auth.currentUser;
+        if (firebaseUser) {
+          const idToken = await firebaseUser.getIdToken();
           const { data } = await getUser({
             variables: { idToken },
           });

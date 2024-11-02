@@ -329,7 +329,7 @@
           },
           {
             "name": "displayName",
-            "description": null,
+            "description": "The user's display name, shown in the UI.",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -364,6 +364,18 @@
             "deprecationReason": null
           },
           {
+            "name": "handle",
+            "description": "A unique @handle for the user. Others can mention the user with this handle.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "id",
             "description": null,
             "args": [],
@@ -375,6 +387,18 @@
                 "name": "ID",
                 "ofType": null
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "photoURL",
+            "description": "The URL of the user's profile photo.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
