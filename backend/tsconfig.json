@@ -4,6 +4,9 @@
     "allowJs": true,
     "jsx": "react-jsx",
     "lib": ["ESNext", "DOM"],
+    "paths": {
+      "@/*": ["./src/*"]
+    },
     "module": "ESNext",
     "moduleDetection": "force",
     "moduleResolution": "bundler",
