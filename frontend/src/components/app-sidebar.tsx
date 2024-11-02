@@ -34,8 +34,8 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
-import { useFbUserOrGuest } from '@/hooks/use-user';
 import { auth } from '@/lib/firebase';
+import { useFbUserOrGuest } from '@/modules/User/hooks';
 import { project } from '@/project';
 
 const data = {
