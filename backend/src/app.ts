@@ -1,16 +1,15 @@
-import admin, { credential, type ServiceAccount } from 'firebase-admin';
+import admin from 'firebase-admin';
+import { getApp } from 'firebase-admin/app';
 import { getAuth } from 'firebase-admin/auth';
+import { getApps } from 'firebase-admin/app';
 import serviceAccount from '../serviceAccountKey.dev.json';
 
-export const initializeApp = async () => {
-  const serviceAccount = await import('../serviceAccountKey.dev.json');
+if (!getApps().length) {
   admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount.default as ServiceAccount),
+    credential: admin.credential.cert(serviceAccount as admin.ServiceAccount),
   });
-};
+}
 
-export const app = admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount as ServiceAccount),
-});
+export const app = getApp();
 
 export const auth = getAuth();
