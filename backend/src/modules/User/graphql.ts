@@ -1,24 +1,22 @@
 import gql from 'graphql-tag';
-import { login, register } from './service';
+import { getUserFromIdToken, login, register } from './service';
 import type { Resolvers } from '../../generated/resolver-types';
 
 export const resolvers: Resolvers = {
   Query: {
-    // greetings: () => 'Hello from Apollo in a Bun app!',
+    user: (_: any, { idToken }: { idToken: string }) => getUserFromIdToken(idToken),
   },
   Mutation: {
-    register: async (_: any, { idToken }: { idToken: string }) => {
-      return register(idToken);
-    },
-    login: async (_: any, { idToken }: { idToken: string }) => {
-      return login(idToken);
-    },
+    register: (_: any, { idToken }: { idToken: string }) => register(idToken),
+    login: (_: any, { idToken }: { idToken: string }) => login(idToken),
   },
 };
 
+// TODO: extend type query/mutation instead of type?
+// TODO: @auth
 export const typeDef = gql`
   type Query {
-    user: User
+    user(idToken: String!): User!
     users: [User!]!
   }
 
@@ -31,8 +29,19 @@ export const typeDef = gql`
     id: ID!
     firebaseUid: String
     email: EmailAddress
+    """
+    The user's display name, shown in the UI.
+    """
     displayName: String
-    createdAt: DateTime
+    createdAt: DateTime!
     updatedAt: DateTime
+    """
+    The URL of the user's profile photo.
+    """
+    photoURL: String
+    """
+    A unique @handle for the user. Others can mention the user with this handle.
+    """
+    handle: String
   }
 `;
