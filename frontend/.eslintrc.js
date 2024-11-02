@@ -13,11 +13,14 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   extends: [
     'next',
+    'next/core-web-vitals',
     'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/stylistic-type-checked',
     'plugin:prettier/recommended',
     'plugin:tailwindcss/recommended',
   ],
   parserOptions: {
+    project: './tsconfig.json',
     babelOptions: {
       presets: [require.resolve('next/babel')],
     },
@@ -77,6 +80,10 @@ module.exports = {
     'prefer-arrow-callback': 'warn',
     'arrow-body-style': ['warn', 'as-needed'],
     'no-confusing-arrow': ['warn', { allowParens: true }],
+    'require-await': 'warn',
+    'no-return-await': 'warn',
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
   },
   overrides: [
     // Supports pages and app router

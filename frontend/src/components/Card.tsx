@@ -3,12 +3,12 @@
 import React from 'react';
 import { IconType } from 'react-icons';
 
-type CardProps = {
+interface CardProps {
   icon: IconType;
   title: string;
   description: string;
   route: string;
-};
+}
 
 export const Card: React.FC<CardProps> = ({ icon: Icon, title, description, route }) => (
   <div

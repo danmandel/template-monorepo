@@ -48,17 +48,27 @@ export type MutationRegisterArgs = {
 
 export type Query = {
   __typename?: 'Query';
-  user?: Maybe<User>;
+  user: User;
   users: Array<User>;
+};
+
+
+export type QueryUserArgs = {
+  idToken: Scalars['String']['input'];
 };
 
 export type User = {
   __typename?: 'User';
-  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  createdAt: Scalars['DateTime']['output'];
+  /** The user's display name, shown in the UI. */
   displayName?: Maybe<Scalars['String']['output']>;
   email?: Maybe<Scalars['EmailAddress']['output']>;
   firebaseUid?: Maybe<Scalars['String']['output']>;
+  /** A unique @handle for the user. Others can mention the user with this handle. */
+  handle?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
+  /** The URL of the user's profile photo. */
+  photoURL?: Maybe<Scalars['String']['output']>;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
 
@@ -186,16 +196,18 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  user?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType>;
+  user?: Resolver<ResolversTypes['User'], ParentType, ContextType, RequireFields<QueryUserArgs, 'idToken'>>;
   users?: Resolver<Array<ResolversTypes['User']>, ParentType, ContextType>;
 };
 
 export type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
-  createdAt?: Resolver<Maybe<ResolversTypes['DateTime']>, ParentType, ContextType>;
+  createdAt?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>;
   displayName?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   email?: Resolver<Maybe<ResolversTypes['EmailAddress']>, ParentType, ContextType>;
   firebaseUid?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  handle?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  photoURL?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   updatedAt?: Resolver<Maybe<ResolversTypes['DateTime']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };

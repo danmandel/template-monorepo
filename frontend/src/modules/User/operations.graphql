@@ -16,3 +16,9 @@ mutation register($idToken: String!) {
     ...userFragment
   }
 }
+
+query getUser($idToken: String!) {
+  user(idToken: $idToken) {
+    ...userFragment
+  }
+}

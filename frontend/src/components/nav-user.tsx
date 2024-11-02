@@ -1,15 +1,20 @@
 'use client';
 
+import firebase from 'firebase/auth';
+
 import {
   BadgeCheck,
   Bell,
   ChevronsUpDown,
   CreditCard,
-  LogOut,
-  Sparkles,
   LogIn,
+  LogOut,
+  Moon,
+  Sparkles,
+  SunMoon,
 } from 'lucide-react';
-
+import { useTheme } from 'next-themes';
+import { useState } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import {
   DropdownMenu,
@@ -26,23 +31,25 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from '@/components/ui/sidebar';
-import { AuthDialog } from './ui/auth-dialog2';
-import { useState } from 'react';
+import { User } from '@/generated/graphql';
+import { auth } from '@/lib/firebase';
+import { AuthDialog } from './auth/auth-dialog';
 
-export function NavUser({
-  user,
-}: {
-  user: {
-    name: string;
-    email: string;
-    avatar: string;
-    displayName: string;
-  };
-}) {
+const signOut = async () => {
+  try {
+    await auth.signOut();
+  } catch (error) {
+    console.error('Error signing out: ', error);
+  }
+};
+
+export const NavUser = ({ user }: { user: Partial<User> }) => {
   const { isMobile } = useSidebar();
-
-  const isLoggedIn = false;
+  const isLoggedIn = user.displayName !== 'Guest';
   const [isAuthOpen, setIsAuthOpen] = useState(false);
+
+  const { setTheme, theme } = useTheme();
+  const isDarkMode = theme === 'dark';
 
   return (
     <>
@@ -55,12 +62,12 @@ export function NavUser({
                 className='data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground'
               >
                 <Avatar className='size-8 rounded-lg'>
-                  <AvatarImage src={user.avatar} alt={user.name} />
+                  <AvatarImage src={user.photoURL ?? ''} alt={`${user.displayName} User Avatar`} />
                   <AvatarFallback className='rounded-lg'>CN</AvatarFallback>
                 </Avatar>
                 <div className='grid flex-1 text-left text-sm leading-tight'>
-                  <span className='truncate font-semibold'>{user.name}</span>
-                  <span className='truncate text-xs'>@{user.displayName}</span>
+                  <span className='truncate font-semibold'>{user.displayName}</span>
+                  <span className='truncate text-xs'>@{user.handle}</span>
                 </div>
                 <ChevronsUpDown className='ml-auto size-4' />
               </SidebarMenuButton>
@@ -74,16 +81,23 @@ export function NavUser({
               <DropdownMenuLabel className='p-0 font-normal'>
                 <div className='flex items-center gap-2 px-1 py-1.5 text-left text-sm'>
                   <Avatar className='size-8 rounded-lg'>
-                    <AvatarImage src={user.avatar} alt={user.name} />
+                    <AvatarImage
+                      src={user.photoURL ?? ''}
+                      alt={`${user.displayName} User Avatar`}
+                    />
                     <AvatarFallback className='rounded-lg'>CN</AvatarFallback>
                   </Avatar>
                   <div className='grid flex-1 text-left text-sm leading-tight'>
-                    <span className='truncate font-semibold'>{user.name}</span>
-                    <span className='truncate text-xs'>@{user.displayName}</span>
+                    <span className='truncate font-semibold'>{user.displayName}</span>
+                    <span className='truncate text-xs'>@{user.handle + '2'}</span>
                   </div>
                 </div>
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
+              <DropdownMenuItem onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
+                {isDarkMode ? <SunMoon /> : <Moon />}
+                Enable {isDarkMode ? 'Light' : 'Dark'} Mode
+              </DropdownMenuItem>
 
               {isLoggedIn ? (
                 <>
@@ -109,7 +123,7 @@ export function NavUser({
                     </DropdownMenuItem>
                   </DropdownMenuGroup>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem>
+                  <DropdownMenuItem onClick={signOut}>
                     <LogOut />
                     Log out
                   </DropdownMenuItem>
@@ -118,6 +132,7 @@ export function NavUser({
                 <DropdownMenuItem onClick={() => setIsAuthOpen(true)}>
                   <LogIn />
                   Sign In / Register
+                  {/* TODO: Make these separate buttons that affect which tab is opened */}
                 </DropdownMenuItem>
               )}
             </DropdownMenuContent>
@@ -127,4 +142,4 @@ export function NavUser({
       <AuthDialog isOpen={isAuthOpen} onClose={() => setIsAuthOpen(false)} />
     </>
   );
-}
+};
