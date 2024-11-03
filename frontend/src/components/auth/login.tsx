@@ -1,4 +1,3 @@
-import { CheckedState } from '@radix-ui/react-checkbox';
 import {
   GoogleAuthProvider,
   signInWithEmailAndPassword,
@@ -45,8 +44,8 @@ export const Login = () => {
       await login({ variables: { input: { idToken: await user.getIdToken() } } });
       // TODO: createAuthEventMutation()
     } catch (error) {
+      signOut(auth);
       if (error instanceof Error) {
-        signOut(auth);
         setError(error.message);
         // if (error.message.includes('User not found. Please register.')) {
         //   await register({ variables: { idToken: await user.getIdToken() } });
@@ -95,7 +94,21 @@ export const Login = () => {
           </a>
         </div>
       </div>
-      {error && <p className='text-sm text-red-500'>{error}</p>}
+      {error && (
+        <div className='text-sm text-red-500'>
+          {error.includes('Please register') ? (
+            // <TabsTrigger value='register'>Register here!</TabsTrigger>
+            <span className='flex items-center'>
+              User not found. Please register or sign in with a different account.
+              {/* <a href='#' className='text-blue-500 hover:underline' onClick={console.log}>
+                register here
+              </a> */}
+            </span>
+          ) : (
+            <p>{error}</p>
+          )}
+        </div>
+      )}
       <Button className='w-full' onClick={handleLogin}>
         Sign In
       </Button>
