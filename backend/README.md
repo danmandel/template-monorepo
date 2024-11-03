@@ -1,6 +1,6 @@
-# template-backend
+# Template Backend
 
-The backend directory for the template monorepo.
+Backend directory for the template monorepo.
 
 ## Setup
 
