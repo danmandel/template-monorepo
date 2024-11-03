@@ -1,6 +1,6 @@
-## Introduction
+## Template Monorepo
 
-This is an opinionated & minimalistic monorepo template for quickly starting new projects.
+This is an opinionated & minimalistic template for quickly starting new projects.
 
 ## Technical Decisions
 
@@ -47,3 +47,5 @@ From the root directory: `cursor frontend && cursor backend`
 From the backend: `bun infra`
 
 Alternatively if you don't want to use docker, you can run `bun dev` in the frontend and backend directories.
+
+To keep your project in sync with updates to this template, you can periodically run `bun backend/bin/sync.ts`. Though due to the fact that starting a project using a template clears the git history, there is a heightened chance of a merge conflict occuring if your project has significantly diverged from the template.
