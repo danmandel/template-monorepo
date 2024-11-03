@@ -30,6 +30,11 @@ export type Event = {
   type: Scalars['String']['output'];
 };
 
+export type LoginInput = {
+  idToken: Scalars['String']['input'];
+  rememberUser?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   login?: Maybe<User>;
@@ -38,7 +43,7 @@ export type Mutation = {
 
 
 export type MutationLoginArgs = {
-  idToken: Scalars['String']['input'];
+  input: LoginInput;
 };
 
 
@@ -69,6 +74,8 @@ export type User = {
   id: Scalars['ID']['output'];
   /** The URL of the user's profile photo. */
   photoURL?: Maybe<Scalars['String']['output']>;
+  /** If true, the user won't be logged out after <TODO: period of time TBD> */
+  rememberUser?: Maybe<Scalars['Boolean']['output']>;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
 
@@ -149,6 +156,7 @@ export type ResolversTypes = {
   Event: ResolverTypeWrapper<Event>;
   ID: ResolverTypeWrapper<Scalars['ID']['output']>;
   JSON: ResolverTypeWrapper<Scalars['JSON']['output']>;
+  LoginInput: LoginInput;
   Mutation: ResolverTypeWrapper<{}>;
   Query: ResolverTypeWrapper<{}>;
   String: ResolverTypeWrapper<Scalars['String']['output']>;
@@ -163,6 +171,7 @@ export type ResolversParentTypes = {
   Event: Event;
   ID: Scalars['ID']['output'];
   JSON: Scalars['JSON']['output'];
+  LoginInput: LoginInput;
   Mutation: {};
   Query: {};
   String: Scalars['String']['output'];
@@ -191,7 +200,7 @@ export interface JsonScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes
 }
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
-  login?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<MutationLoginArgs, 'idToken'>>;
+  login?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<MutationLoginArgs, 'input'>>;
   register?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<MutationRegisterArgs, 'idToken'>>;
 };
 
@@ -208,6 +217,7 @@ export type UserResolvers<ContextType = any, ParentType extends ResolversParentT
   handle?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   photoURL?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  rememberUser?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
   updatedAt?: Resolver<Maybe<ResolversTypes['DateTime']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };

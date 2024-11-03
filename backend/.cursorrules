@@ -1,22 +1,6 @@
-const cursorRules = {
-  lang: 'TypeScript',
-  'Tech Stack': [
-    'Next.js (App router)',
-    'Tailwind with Postcss',
-    'Apollo Graphql',
-    'TypeORM (backend)',
-    'Postgres (backend)',
-    'Bun package manager',
-  ],
-  rules: {
-    general: [
-      'Please ask clarifying questions when you are unsure about the requirements.',
-      'Prefer imports over require',
-      'Suggest commands using bun when possible',
-    ],
-    codeStyle: [
-      'Write pure, functional TypeScript code. Avoid classes unless absolutely necessary',
-      'Use descriptive variable names with auxiliary verbs (e.g., isLoading, hasError).',
-    ],
-  },
-};
+1. Suggest commands using bun, not npm, when possible.
+2. Tech stack: Backend Typescript TypeORM, Postgres, Apollo GraphQL, Redis.
+3. Please ask clarifying questions when you are unsure about the requirements.
+4. Make invalid states unrepresentable when possible.
+5. Functions should be written as const arrow functions.
+

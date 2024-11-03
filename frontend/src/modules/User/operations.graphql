@@ -5,8 +5,8 @@ fragment userFragment on User {
   displayName
 }
 
-mutation login($idToken: String!) {
-  login(idToken: $idToken) {
+mutation login($input: LoginInput!) {
+  login(input: $input) {
     ...userFragment
   }
 }

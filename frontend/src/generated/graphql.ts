@@ -31,6 +31,11 @@ export type Event = {
   type: Scalars['String']['output'];
 };
 
+export type LoginInput = {
+  idToken: Scalars['String']['input'];
+  rememberUser?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   login?: Maybe<User>;
@@ -39,7 +44,7 @@ export type Mutation = {
 
 
 export type MutationLoginArgs = {
-  idToken: Scalars['String']['input'];
+  input: LoginInput;
 };
 
 
@@ -70,13 +75,15 @@ export type User = {
   id: Scalars['ID']['output'];
   /** The URL of the user's profile photo. */
   photoURL?: Maybe<Scalars['String']['output']>;
+  /** If true, the user won't be logged out after <TODO: period of time TBD> */
+  rememberUser?: Maybe<Scalars['Boolean']['output']>;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
 
 export type UserFragmentFragment = { __typename?: 'User', id: string, email?: any | null, createdAt: any, displayName?: string | null };
 
 export type LoginMutationVariables = Exact<{
-  idToken: Scalars['String']['input'];
+  input: LoginInput;
 }>;
 
 
@@ -105,8 +112,8 @@ export const UserFragmentFragmentDoc = gql`
 }
     `;
 export const LoginDocument = gql`
-    mutation login($idToken: String!) {
-  login(idToken: $idToken) {
+    mutation login($input: LoginInput!) {
+  login(input: $input) {
     ...userFragment
   }
 }
@@ -126,7 +133,7 @@ export type LoginMutationFn = Apollo.MutationFunction<LoginMutation, LoginMutati
  * @example
  * const [loginMutation, { data, loading, error }] = useLoginMutation({
  *   variables: {
- *      idToken: // value for 'idToken'
+ *      input: // value for 'input'
  *   },
  * });
  */

@@ -16,7 +16,8 @@ export const AuthDialog = ({ isOpen, onClose }: AuthDialogProps) => (
       <DialogHeader>
         <DialogTitle className='text-black dark:text-gray-300'>Get Started</DialogTitle>
       </DialogHeader>
-      <Tabs defaultValue='register' className='w-full'>
+      {/* TODO: default value = what the user clicked */}
+      <Tabs defaultValue='signin' className='w-full'>
         <TabsList className='grid w-full grid-cols-2'>
           <TabsTrigger value='signin'>Sign In</TabsTrigger>
           <TabsTrigger value='register'>Register</TabsTrigger>

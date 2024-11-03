@@ -1,13 +1,10 @@
 import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
 import { initializeDb } from './db';
-import { initializeApp } from './app';
 import { schema } from './api';
 
 export const startServer = async () => {
   await initializeDb();
-
-  await initializeApp();
 
   const server = new ApolloServer({ schema });
 

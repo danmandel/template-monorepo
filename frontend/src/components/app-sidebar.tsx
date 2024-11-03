@@ -35,6 +35,7 @@ import {
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import { auth } from '@/lib/firebase';
+import { useFbUserOrGuest } from '@/modules/User/hooks';
 import { project } from '@/project';
 
 const data = {
@@ -197,11 +198,8 @@ const data = {
 };
 
 export const AppSidebar = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {
-  const [user] = useAuthState(auth);
-  const isLoggedIn = !!user;
-  // console.log('userAuth', userAuth);
-  // console.log({ userAuth });
-  // const user = authData ?? data.guest;
+  const { user } = useFbUserOrGuest();
+
   return (
     <Sidebar variant='inset' {...props}>
       <SidebarHeader>

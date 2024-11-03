@@ -31,11 +31,14 @@ export default class User {
   @CreateDateColumn()
   createdAt: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ nullable: true })
   updatedAt: Date;
 
   @Column({ nullable: true })
   stripeCustomerId: string;
+
+  @Column({ default: false })
+  rememberUser: boolean;
 
   // @Column({ default: 'active' })
   // status: 'active' | 'suspended' | 'cancelled';

@@ -4,11 +4,11 @@ import type { Resolvers } from '../../generated/resolver-types';
 
 export const resolvers: Resolvers = {
   Query: {
-    user: (_: any, { idToken }: { idToken: string }) => getUserFromIdToken(idToken),
+    user: (_, { idToken }) => getUserFromIdToken(idToken),
   },
   Mutation: {
-    register: (_: any, { idToken }: { idToken: string }) => register(idToken),
-    login: (_: any, { idToken }: { idToken: string }) => login(idToken),
+    register: (_, { idToken }) => register(idToken),
+    login: (_, { input: { idToken } }) => login(idToken),
   },
 };
 
@@ -22,7 +22,12 @@ export const typeDef = gql`
 
   type Mutation {
     register(idToken: String!): User
-    login(idToken: String!): User
+    login(input: LoginInput!): User
+  }
+
+  input LoginInput {
+    idToken: String!
+    rememberUser: Boolean
   }
 
   type User {
@@ -43,5 +48,9 @@ export const typeDef = gql`
     A unique @handle for the user. Others can mention the user with this handle.
     """
     handle: String
+    """
+    If true, the user won't be logged out after <TODO: period of time TBD>
+    """
+    rememberUser: Boolean
   }
 `;
