@@ -6,6 +6,7 @@
     "source.addMissingImports.ts": "always",
     "source.fixAll.eslint": "always"
     // "source.sortImports": "always"
+    // "source.organizeImports": "always"
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnPaste": true, // optional
@@ -14,14 +15,14 @@
   "editor.formatOnType": false, // required
   "eslint.validate": ["javascript", "typescript", "typescriptreact"],
   "files.autoSave": "afterDelay",
+  "git.openRepositoryInParentFolders": "always",
   "search.exclude": {
     "package-lock.json": true
   },
   "typescript.enablePromptUseWorkspaceTsdk": true,
+  "typescript.tsdk": "node_modules/typescript/lib",
   "window.title": "${rootName}${separator}${activeEditorMedium}",
   "window.zoomLevel": 0,
   "workbench.colorTheme": "Atom One Dark",
-  "workbench.editor.labelFormat": "medium",
-  "git.openRepositoryInParentFolders": "always",
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "workbench.editor.labelFormat": "medium"
 }
